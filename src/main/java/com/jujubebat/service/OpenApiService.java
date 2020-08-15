@@ -160,7 +160,6 @@ public class OpenApiService {
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
                         Product product = new Product();  // [빌터 패턴으로 객체 생성해보기]
-
                         product.setPLNM_NO(Long.parseLong(getTagValue("PLNM_NO", eElement)));
                         product.setPBCT_NO(Long.parseLong(getTagValue("PBCT_NO", eElement)));
                         product.setPBCT_CDTN_NO(Long.parseLong(getTagValue("PBCT_CDTN_NO", eElement)));
@@ -175,9 +174,7 @@ public class OpenApiService {
                         product.setNMRD_ADRS(getTagValue("NMRD_ADRS", eElement));
                         product.setDPSL_MTD_CD(getTagValue("DPSL_MTD_CD", eElement));
                         product.setDPSL_MTD_NM(getTagValue("DPSL_MTD_NM", eElement));
-
                         product.setBID_MTD_NM(getTagValue("BID_MTD_NM", eElement));
-
                         product.setMIN_BID_PRC(getTagValue("MIN_BID_PRC", eElement));
                         product.setAPSL_ASES_AVG_AMT(getTagValue("APSL_ASES_AVG_AMT", eElement));
                         product.setFEE_RATE(getTagValue("FEE_RATE", eElement));
