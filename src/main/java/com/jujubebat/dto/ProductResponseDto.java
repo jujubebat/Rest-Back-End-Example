@@ -16,7 +16,7 @@ public class ProductResponseDto {
     private String useName; // 용도명
     private String bidNum; // 입찰 번호
     private String objectName; // 물건명
-    private Long objectManagementNum; // 물건 관리 번호
+    private String objectManagementNum; // 물건 관리 번호
     private String lotNum; // 지번
     private String roadName; // 도로명
     private String disposalMethodCode; // 처분 방식 코드

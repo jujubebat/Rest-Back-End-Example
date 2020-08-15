@@ -15,12 +15,16 @@ import java.time.LocalDateTime;
 @Component
 public class ScheduleTask {
 
+    private final OpenApiService openApiService;
+
     @Autowired
-    OpenApiService getApiData;
+    public ScheduleTask(OpenApiService openApiService){
+        this.openApiService = openApiService;
+    }
 
     @Scheduled(fixedDelay = 2000)
     public void task1() throws IOException, URISyntaxException, ParserConfigurationException, SAXException, TransformerException {
         System.out.println("api 호출완료" + LocalDateTime.now());
-        getApiData.getProductList();
+        openApiService.getProductList();
     }
 }
