@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-
 public class ProductDetail {
 
     @Id

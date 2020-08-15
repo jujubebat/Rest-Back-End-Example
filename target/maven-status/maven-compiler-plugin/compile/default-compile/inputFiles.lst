@@ -41,7 +41,6 @@ C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\co
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\TokenAuthenticationFilter.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\model\User.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\oauth2\OAuth2AuthenticationSuccessHandler.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\DataUpdateService.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\dto\ProductDetailResponseDto.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\util\CookieUtils.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\config\SwaggerConfig.java
