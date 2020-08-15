@@ -13,7 +13,7 @@ import com.jujubebat.model.ProductDetail;
 import com.jujubebat.repository.ProductDateRepository;
 import com.jujubebat.repository.ProductDetailRepository;
 import com.jujubebat.repository.ProductRepository;
-import javafx.util.Pair;
+//import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class OpenApiService {
     private final ProductRepository productRepository;
     private final ProductDetailRepository productDetailRepository;
     private final ProductDateRepository productDateRepository;
-    HashMap<Pair<Long, Long>, Object> m;
+    //HashMap<Pair<Long, Long>, Object> m;
     int ProductfileNum = 0;
     int ProductDetailfileNum = 0;
     int ProductDatefileNum = 0;
@@ -57,7 +57,7 @@ public class OpenApiService {
     }
 
     public void updateDB() throws IOException, SAXException, ParserConfigurationException, TransformerException {
-        List<HashMap<Pair<Long, Long>, Object>> productMapList = getProductList();
+        //List<HashMap<Pair<Long, Long>, Object>> productMapList = getProductList();
         /*
                A XML (이전 데이터)
 
@@ -107,14 +107,14 @@ public class OpenApiService {
 
     // 캠코 공매물건 목록조회
     // 최신 테이블 정보 리턴.
-    public List<HashMap<Pair<Long, Long>, Object>> getProductList() throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public void /*List<HashMap<Pair<Long, Long>, Object>>*/ getProductList() throws ParserConfigurationException, IOException, SAXException, TransformerException {
 
-        List<HashMap<Pair<Long, Long>, Object>> productMapList = new ArrayList<>();
+       // List<HashMap<Pair<Long, Long>, Object>> productMapList = new ArrayList<>();
 
-        HashMap<Pair<Long, Long>, Object> kamcoProductInfo = new HashMap<>(); // 캠코 공매 물건
-        HashMap<Pair<Long, Long>, Object> kamcoProductDetailInfo = new HashMap<>();
+        //HashMap<Pair<Long, Long>, Object> kamcoProductInfo = new HashMap<>(); // 캠코 공매 물건
+        //HashMap<Pair<Long, Long>, Object> kamcoProductDetailInfo = new HashMap<>();
         ; // 물건 상세 정보
-        HashMap<Pair<Long, Long>, Object> kamcoProductDateInfo = new HashMap<>();
+        //HashMap<Pair<Long, Long>, Object> kamcoProductDateInfo = new HashMap<>();
         ; // 일정 상세 정보
 
         int pageNo = 0;
@@ -204,26 +204,26 @@ public class OpenApiService {
                         String PLNM_NO = getTagValue("PLNM_NO", eElement);
                         String PBCT_NO = getTagValue("PBCT_NO", eElement);
 
-                        Pair key = new Pair<Long, Long>(Long.parseLong(PLNM_NO), Long.parseLong(PBCT_NO));
+                       // Pair key = new Pair<Long, Long>(Long.parseLong(PLNM_NO), Long.parseLong(PBCT_NO));
 
-                        kamcoProductInfo.put(key, product); // 물건 정보 map에 추가
-
-                        kamcoProductDetailInfo.put(key, getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO)); // 상세정보 map에 추가
+                        //kamcoProductInfo.put(key, product); // 물건 정보 map에 추가
+                        getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO);
+                        //kamcoProductDetailInfo.put(key, getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO)); // 상세정보 map에 추가
 
                         List<ProductDate> list = getKamcoPlnmPbctBidDateInfoDetail(PLNM_NO, PBCT_NO);
                         for (ProductDate productDate : list) {
-                            kamcoProductDateInfo.put(key, productDate); // 상세 일정 정보 map에 추가
+                           // kamcoProductDateInfo.put(key, productDate); // 상세 일정 정보 map에 추가
                        }
                     }
                 }
             }
         }
 
-        productMapList.add(kamcoProductInfo);
-        productMapList.add(kamcoProductDetailInfo);
-        productMapList.add(kamcoProductDateInfo);
+   //    productMapList.add(kamcoProductInfo);
+     //   productMapList.add(kamcoProductDetailInfo);
+      //  productMapList.add(kamcoProductDateInfo);
 
-        return productMapList;
+      //  return productMapList;
     }
 
     // 캠코공매공고 기본정보 상세조회
