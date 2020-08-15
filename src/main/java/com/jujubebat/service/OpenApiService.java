@@ -140,10 +140,11 @@ public class OpenApiService {
                 NodeList nList = doc.getElementsByTagName("item");
 
                 // xml 파일 저장
+                /*
                 Transformer transformer = TransformerFactory.newInstance().newTransformer();
                 Result output = new StreamResult(new File("/gongdal_data/new/product/product"+ProductfileNum+".xml"));
                 Source input = new DOMSource(doc);
-                transformer.transform(input, output);
+                transformer.transform(input, output);*/
 
                 System.out.println("#######공매물건목록조회#######");
                 System.out.println(callBackURL);
@@ -174,7 +175,9 @@ public class OpenApiService {
                         product.setNMRD_ADRS(getTagValue("NMRD_ADRS", eElement));
                         product.setDPSL_MTD_CD(getTagValue("DPSL_MTD_CD", eElement));
                         product.setDPSL_MTD_NM(getTagValue("DPSL_MTD_NM", eElement));
+
                         product.setBID_MTD_NM(getTagValue("BID_MTD_NM", eElement));
+
                         product.setMIN_BID_PRC(getTagValue("MIN_BID_PRC", eElement));
                         product.setAPSL_ASES_AVG_AMT(getTagValue("APSL_ASES_AVG_AMT", eElement));
                         product.setFEE_RATE(getTagValue("FEE_RATE", eElement));
@@ -195,6 +198,9 @@ public class OpenApiService {
                         product.setTPBZ(getTagValue("TPBZ", eElement));
                         product.setITM_NM(getTagValue("ITM_NM", eElement));
                         product.setMMB_RGT_NM(getTagValue("MMB_RGT_NM", eElement));
+
+
+                        System.out.println(getTagValue("BID_MTD_NM", eElement));
 
                         productRepository.save(product);
 
@@ -234,10 +240,11 @@ public class OpenApiService {
 
         ProductDetailfileNum++;
 
+        /*
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         Result output = new StreamResult(new File("/gongdal_data/new/product_detail/productDetail"+ProductDetailfileNum+".xml"));
         Source input = new DOMSource(doc);
-        transformer.transform(input, output);
+        transformer.transform(input, output);*/
 
         System.out.println("    #######상세조회#######");
         System.out.println("    " + callBackURL);
@@ -265,6 +272,7 @@ public class OpenApiService {
         productDetail.setORG_PLNM_NO(getTagValue("ORG_PLNM_NO", eElement));
         productDetail.setRLTN_PLNM_NO(getTagValue("RLTN_PLNM_NO", eElement));
         productDetail.setRLTN_PLNM_TITL(getTagValue("RLTN_PLNM_TITL", eElement));
+
         productDetail.setBID_MTD_NM(getTagValue("BID_MTD_NM", eElement));
         productDetail.setDPSL_MTD_NM(getTagValue("DPSL_MTD_NM", eElement));
         productDetail.setCPTN_MTD_NM(getTagValue("CPTN_MTD_NM", eElement));
@@ -276,6 +284,8 @@ public class OpenApiService {
         productDetail.setPLNM_DOC(getTagValue("PLNM_DOC", eElement));
         productDetail.setBidDateInfosTotalCount(getTagValue("bidDateInfosTotalCount", eElement));
         productDetail.setFilesTotalCount(getTagValue("filesTotalCount", eElement));
+
+
 
         productDetailRepository.save(productDetail);
 
@@ -301,11 +311,12 @@ public class OpenApiService {
         DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
         Document doc = dBuilder.parse(callBackURL);
 
+        /*
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         Result output = new StreamResult(new File("/gongdal_data/new/product_date/productDate"+ProductDatefileNum+".xml"));
         Source input = new DOMSource(doc);
         transformer.transform(input, output);
-
+*/
         NodeList nList = doc.getElementsByTagName("bidDateInfoItem");
 
         doc.getDocumentElement().normalize();

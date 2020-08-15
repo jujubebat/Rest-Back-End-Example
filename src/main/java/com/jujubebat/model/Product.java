@@ -34,6 +34,7 @@ public class Product {
     private String NMRD_ADRS;
     private String DPSL_MTD_CD;
     private String DPSL_MTD_NM;
+    @Lob
     private String BID_MTD_NM;
     private String MIN_BID_PRC;
     private String APSL_ASES_AVG_AMT;
