@@ -30,4 +30,10 @@ public class ProductService {
     public Page<Product> getProducts(int pageNum){
         return productRepository.findAll(PageRequest.of(pageNum,pageSize));
     }
+
+    public Product getProductByObjectManagementNum(Long num){
+        Optional<Product> product = productRepository.findByEx(num);
+        if(!product.isPresent()) return null;
+        return product.get();
+    }
 }

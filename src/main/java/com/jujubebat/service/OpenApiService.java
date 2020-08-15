@@ -169,7 +169,7 @@ public class OpenApiService {
                         product.setBID_MNMT_NO(getTagValue("BID_MNMT_NO", eElement));
                         product.setCLTR_NM(getTagValue("CLTR_NM", eElement));
                         product.setCTGR_FULL_NM(getTagValue("CTGR_FULL_NM", eElement));
-                        product.setCLTR_MNMT_NO(getTagValue("CLTR_MNMT_NO", eElement));
+                        product.setCLTR_MNMT_NO(Long.parseLong(getTagValue("CLTR_MNMT_NO", eElement)));
                         product.setLDNM_ADRS(getTagValue("LDNM_ADRS", eElement));
                         product.setNMRD_ADRS(getTagValue("NMRD_ADRS", eElement));
                         product.setDPSL_MTD_CD(getTagValue("DPSL_MTD_CD", eElement));

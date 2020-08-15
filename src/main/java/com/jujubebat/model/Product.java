@@ -29,7 +29,7 @@ public class Product {
     private String CTGR_FULL_NM;
     private String BID_MNMT_NO;
     private String CLTR_NM;
-    private String CLTR_MNMT_NO;
+    private Long CLTR_MNMT_NO;
     private String LDNM_ADRS;
     private String NMRD_ADRS;
     private String DPSL_MTD_CD;
@@ -57,4 +57,5 @@ public class Product {
     private String TPBZ;
     private String ITM_NM;
     private String MMB_RGT_NM;
+    private Long ex;
 }

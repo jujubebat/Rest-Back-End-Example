@@ -10,4 +10,8 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findById(Long id);
+
+    //Optional<Product> findByCLTR_MNMT_NO(Long id);
+
+    Optional<Product> findByEx(Long id);
 }
