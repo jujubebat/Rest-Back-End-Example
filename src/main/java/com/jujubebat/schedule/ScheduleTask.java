@@ -1,11 +1,14 @@
 package com.jujubebat.schedule;
 
-import com.jujubebat.service.GetApiData;
+import com.jujubebat.service.OpenApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.xml.sax.SAXException;
 
-import java.io.UnsupportedEncodingException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 
@@ -13,11 +16,11 @@ import java.time.LocalDateTime;
 public class ScheduleTask {
 
     @Autowired
-    GetApiData getApiData;
+    OpenApiService getApiData;
 
     @Scheduled(fixedDelay = 2000)
-    public void task1() throws UnsupportedEncodingException, URISyntaxException {
+    public void task1() throws IOException, URISyntaxException, ParserConfigurationException, SAXException, TransformerException {
         System.out.println("api 호출완료" + LocalDateTime.now());
-        getApiData.GetData();
+        getApiData.getProductList();
     }
 }

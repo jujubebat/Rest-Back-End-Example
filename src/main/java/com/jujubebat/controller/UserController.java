@@ -1,6 +1,5 @@
 package com.jujubebat.controller;
 
-
 import com.jujubebat.exception.ResourceNotFoundException;
 import com.jujubebat.model.User;
 import com.jujubebat.repository.UserRepository;
