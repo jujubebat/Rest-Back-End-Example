@@ -48,7 +48,6 @@ public class ProductApiController {
 
         System.out.println("haha " + searchType + " " + keyword);
 
-
         if(searchType.equals("objectName")){
             productList = productService.getProductsLikeObjectName(keyword);
             System.out.println("objectName : " + searchType + " " + keyword);
@@ -59,6 +58,8 @@ public class ProductApiController {
         }
 
         List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
+
+        if(productList.isEmpty()) return null;
 
         for(Product product : productList){
             ProductResponseDto productResponseDto = new ProductResponseDto();
