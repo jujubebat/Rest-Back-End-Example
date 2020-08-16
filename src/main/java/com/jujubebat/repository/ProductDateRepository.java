@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductDateRepository extends JpaRepository<ProductDate, Long> {
+
 }

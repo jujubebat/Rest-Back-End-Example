@@ -31,9 +31,13 @@ public class ProductService {
         return productRepository.findAll(PageRequest.of(pageNum,pageSize));
     }
 
-    public Product getProductByObjectManagementNum(Long num){
-        Optional<Product> product = productRepository.findByEx(num);
+    public Product getProductByObjectManagementNum(String ObjectManagementNum){
+        Optional<Product> product = productRepository.findByObjectManagementNum(ObjectManagementNum);
         if(!product.isPresent()) return null;
         return product.get();
+    }
+
+    public List<Product> getProductsLikeObjectName(String ObjectName){
+        return productRepository.findByObjectNameLike(ObjectName);
     }
 }

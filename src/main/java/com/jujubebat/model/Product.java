@@ -19,43 +19,41 @@ public class Product {
     private List<Calendar> calendar = new ArrayList<>();
 
     @Id
-    private Long PBCT_NO;
-    private Long PLNM_NO;
-    private Long PBCT_CDTN_NO;
-
-    private Long CLTR_NO;
-    private Long CLTR_HSTR_NO;
-    private String SCRN_GRP_CD;
-    private String CTGR_FULL_NM;
-    private String BID_MNMT_NO;
-    private String CLTR_NM;
-    private String CLTR_MNMT_NO;
-    private String LDNM_ADRS;
-    private String NMRD_ADRS;
-    private String DPSL_MTD_CD;
-    private String DPSL_MTD_NM;
+    private Long publicAuctionNum; // 공매 번호
+    private Long noticeNum; //공고 번호
+    private Long publicAuctionConditionNum; // 공매 조건 번호
+    private Long objectNum; // 물건 번호
+    private Long objectRecordNum; //물건 이력 번호
+    private String screenGroupCode; // 화면 그룹 코드
+    private String bidNum; // 입찰 번호
+    private String objectName; // 물건명
+    private String useName; // 용도명
+    private String objectManagementNum; // 물건 관리 번호
+    private String lotNum; // 지번
+    private String roadName; // 도로명
+    private String disposalMethodCode; // 처분 방식 코드
+    private String disposalMethodCodeName; // 처분 방식 코드명
     @Lob
-    private String BID_MTD_NM;
-    private String MIN_BID_PRC;
-    private String APSL_ASES_AVG_AMT;
-    private String FEE_RATE;
-    private String PBCT_BEGN_DTM;
-    private String PBCT_CLS_DTM;
-    private String PBCT_CLTR_STAT_NM;
-    private String USCBD_CNT;
-    private String IQRY_CNT;
+    private String bidMethod; // 입찰 방식명
+    private String minimumBidPrice; // 최저 입찰가
+    private String appraisedPrice; // 감정가
+    private String minimumBidPriceRate; // 최저 입찰가율
+    private String bidBeginDateTime; // 입찰 시작 일시
+    private String bidCloseDateTime; // 입찰 마감 일시
+    private String objectCondition; // 물건 상태
+    private String failBidCount; // 유찰횟수
+    private String onbidViews; // 온비드 게시글 조회수
     @Lob
-    private String GOODS_NM;
-    private String MANF;
-    private String MDL;
-    private String NRGT;
-    private String GRBX;
-    private String ENDPC;
-    private String VHCL_MLGE;
-    private String FUEL;
-    private String SCRT_NM;
-    private String TPBZ;
-    private String ITM_NM;
-    private String MMB_RGT_NM;
-    private Long ex;
+    private String productDetailInfo; // 물건 상세 정보
+    private String manufacturer; // 제조사
+    private String model; // 모델
+    private String yearAndMonth; // 연월식
+    private String transmission; // 변속기
+    private String displacement; // 배기량
+    private String distanceDriven; // 주행거리
+    private String fuelType; // 연료 종류
+    private String corporationName; // 법인명
+    private String businessType; // 업종
+    private String eventName; // 종목명
+    private String membershipName; // 회원권명
 }

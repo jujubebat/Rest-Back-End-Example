@@ -3,6 +3,7 @@ package com.jujubebat.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -10,19 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Data
 @Entity
-public @Data  class Car {
+public class Car {
 
     @Id
     @GeneratedValue
     private Long id;
 
     private  String carName;
+
+    @Column
     private  String speed;
+
     private  String weight;
 
     @ManyToMany
     private List<Parts> parts = new ArrayList<>();
+
+    public Car(){
+
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -35,96 +35,49 @@ public class ProductApiController {
 
         for(Product product : productService.getProducts(pageNum - 1)){
             ProductResponseDto productResponseDto = new ProductResponseDto();
-            productResponseDto.setPublicAuctionNum(product.getPBCT_NO());
-            productResponseDto.setNoticeNum(product.getPLNM_NO());
-            productResponseDto.setPublicAuctionConditionNum(product.getPBCT_CDTN_NO());
-            productResponseDto.setObjectRecordNum(product.getCLTR_NO());
-            productResponseDto.setScreenGroupCode(product.getSCRN_GRP_CD());
-            productResponseDto.setUseName(product.getCTGR_FULL_NM());
-            productResponseDto.setBidNum(product.getBID_MNMT_NO());
-            productResponseDto.setObjectName(product.getCLTR_NM());
-            productResponseDto.setObjectManagementNum(product.getCLTR_MNMT_NO());
-            productResponseDto.setLotNum(product.getLDNM_ADRS());
-            productResponseDto.setRoadName(product.getNMRD_ADRS());
-            productResponseDto.setDisposalMethodCode(product.getDPSL_MTD_CD());
-            productResponseDto.setDisposalMethodCodeName(product.getDPSL_MTD_NM());
-            productResponseDto.setBidMethodName(product.getBID_MTD_NM());
-            productResponseDto.setMinimumBidPrice(product.getMIN_BID_PRC());
-            productResponseDto.setAppraisedPrice(product.getAPSL_ASES_AVG_AMT());
-            productResponseDto.setMinimumBidPriceRate(product.getFEE_RATE());
-            productResponseDto.setBidBeginDateTime(product.getPBCT_BEGN_DTM());
-            productResponseDto.setBidCloseDateTime(product.getPBCT_CLS_DTM());
-            productResponseDto.setObjectCondition(product.getPBCT_CLTR_STAT_NM());
-            productResponseDto.setFailBidCount(product.getUSCBD_CNT());
-            productResponseDto.setOnbidViews(product.getIQRY_CNT());
-            productResponseDto.setProductDetailInfo(product.getGOODS_NM());
-            productResponseDto.setManufacturer(product.getMANF());
-            productResponseDto.setModel(product.getMDL());
-            productResponseDto.setYearAndMonth(product.getNRGT());
-            productResponseDto.setTransmission(product.getGRBX());
-            productResponseDto.setDisplacement(product.getENDPC());
-            productResponseDto.setDistanceDriven(product.getVHCL_MLGE());
-            productResponseDto.setFuelType(product.getFUEL());
-            productResponseDto.setCorporationName(product.getSCRT_NM());
-            productResponseDto.setBusinessType(product.getTPBZ());
-            productResponseDto.setEventName(product.getITM_NM());
-            productResponseDto.setMembershipName(product.getMMB_RGT_NM());
-            productResponseDtoList.add(productResponseDto);
+
         }
 
         return productResponseDtoList;
     }
 
     @GetMapping(path = "/search")
-    public ProductResponseDto getProductsByOption(@RequestParam(defaultValue = "") String searchType,
+    public List<ProductResponseDto> getProductsByOption(@RequestParam(defaultValue = "") String searchType,
                                                         @RequestParam(defaultValue = "") String keyword){
+        List<Product> productList = new ArrayList<>();
 
-        Product product = new Product();
-
-        if(searchType == "물건명"){
+        System.out.println("haha " + searchType + " " + keyword);
 
 
-        }else if(searchType == "물건관리번호"){
-            product = productService.getProductByObjectManagementNum(Long.parseLong(keyword));
+        if(searchType.equals("objectName")){
+            productList = productService.getProductsLikeObjectName(keyword);
+            System.out.println("objectName : " + searchType + " " + keyword);
+
+        }else if(searchType.equals("objectManagementNum")){
+            productList.add(productService.getProductByObjectManagementNum(keyword));
+            System.out.println("objectManagementNum : " + searchType + " " + keyword);
         }
 
-        ProductResponseDto productResponseDto = new ProductResponseDto();
-        productResponseDto.setPublicAuctionNum(product.getPBCT_NO());
-        productResponseDto.setNoticeNum(product.getPLNM_NO());
-        productResponseDto.setPublicAuctionConditionNum(product.getPBCT_CDTN_NO());
-        productResponseDto.setObjectRecordNum(product.getCLTR_NO());
-        productResponseDto.setScreenGroupCode(product.getSCRN_GRP_CD());
-        productResponseDto.setUseName(product.getCTGR_FULL_NM());
-        productResponseDto.setBidNum(product.getBID_MNMT_NO());
-        productResponseDto.setObjectName(product.getCLTR_NM());
-        productResponseDto.setObjectManagementNum(product.getCLTR_MNMT_NO());
-        productResponseDto.setLotNum(product.getLDNM_ADRS());
-        productResponseDto.setRoadName(product.getNMRD_ADRS());
-        productResponseDto.setDisposalMethodCode(product.getDPSL_MTD_CD());
-        productResponseDto.setDisposalMethodCodeName(product.getDPSL_MTD_NM());
-        productResponseDto.setBidMethodName(product.getBID_MTD_NM());
-        productResponseDto.setMinimumBidPrice(product.getMIN_BID_PRC());
-        productResponseDto.setAppraisedPrice(product.getAPSL_ASES_AVG_AMT());
-        productResponseDto.setMinimumBidPriceRate(product.getFEE_RATE());
-        productResponseDto.setBidBeginDateTime(product.getPBCT_BEGN_DTM());
-        productResponseDto.setBidCloseDateTime(product.getPBCT_CLS_DTM());
-        productResponseDto.setObjectCondition(product.getPBCT_CLTR_STAT_NM());
-        productResponseDto.setFailBidCount(product.getUSCBD_CNT());
-        productResponseDto.setOnbidViews(product.getIQRY_CNT());
-        productResponseDto.setProductDetailInfo(product.getGOODS_NM());
-        productResponseDto.setManufacturer(product.getMANF());
-        productResponseDto.setModel(product.getMDL());
-        productResponseDto.setYearAndMonth(product.getNRGT());
-        productResponseDto.setTransmission(product.getGRBX());
-        productResponseDto.setDisplacement(product.getENDPC());
-        productResponseDto.setDistanceDriven(product.getVHCL_MLGE());
-        productResponseDto.setFuelType(product.getFUEL());
-        productResponseDto.setCorporationName(product.getSCRT_NM());
-        productResponseDto.setBusinessType(product.getTPBZ());
-        productResponseDto.setEventName(product.getITM_NM());
-        productResponseDto.setMembershipName(product.getMMB_RGT_NM());
+        List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
 
-        return productResponseDto;
+        for(Product product : productList){
+            ProductResponseDto productResponseDto = new ProductResponseDto();
+            productResponseDto.setPublicAuctionNum(product.getPublicAuctionNum());
+            productResponseDto.setUseName(product.getUseName());
+            productResponseDto.setObjectName(product.getObjectName());
+            productResponseDto.setObjectManagementNum(product.getObjectManagementNum());
+            productResponseDto.setMinimumBidPrice(product.getMinimumBidPrice());
+            productResponseDto.setAppraisedPrice(product.getAppraisedPrice());
+            productResponseDto.setMinimumBidPriceRate(product.getMinimumBidPriceRate());
+            productResponseDto.setBidBeginDateTime(product.getBidBeginDateTime());
+            productResponseDto.setBidCloseDateTime(product.getBidCloseDateTime());
+            productResponseDto.setObjectCondition(product.getObjectCondition());
+            productResponseDto.setFailBidCount(product.getFailBidCount());
+            productResponseDto.setOnbidViews(product.getOnbidViews());
+            productResponseDtoList.add(productResponseDto);
+        }
+
+        return productResponseDtoList;
     }
 
     @GetMapping(path = "/{publicAuctionNum}") //상세 조회로 만들기
