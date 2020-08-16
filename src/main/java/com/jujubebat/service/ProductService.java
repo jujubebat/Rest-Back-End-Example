@@ -38,6 +38,6 @@ public class ProductService {
     }
 
     public List<Product> getProductsLikeObjectName(String ObjectName){
-        return productRepository.findByObjectNameLike(ObjectName);
+        return productRepository.findByObjectNameLike("%" + ObjectName + "%");
     }
 }
