@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@ToString(exclude = {"product"})
+@ToString(exclude = {"calendar"})
 public class Product {
 
     @OneToMany(mappedBy = "product")
