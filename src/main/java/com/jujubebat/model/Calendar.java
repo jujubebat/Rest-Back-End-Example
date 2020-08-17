@@ -7,6 +7,14 @@ import javax.persistence.*;
 @Entity
 @Data
 public class Calendar {
+    @Override
+    public String toString() {
+        return "Calendar{" +
+                "id=" + id +
+                ", product=" + product +
+                ", user=" + user +
+                '}';
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

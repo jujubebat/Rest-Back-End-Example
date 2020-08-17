@@ -56,4 +56,46 @@ public class Product {
     private String businessType; // 업종
     private String eventName; // 종목명
     private String membershipName; // 회원권명
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "calendar=" + calendar +
+                ", publicAuctionNum=" + publicAuctionNum +
+                ", noticeNum=" + noticeNum +
+                ", publicAuctionConditionNum=" + publicAuctionConditionNum +
+                ", objectNum=" + objectNum +
+                ", objectRecordNum=" + objectRecordNum +
+                ", screenGroupCode='" + screenGroupCode + '\'' +
+                ", bidNum='" + bidNum + '\'' +
+                ", objectName='" + objectName + '\'' +
+                ", useName='" + useName + '\'' +
+                ", objectManagementNum='" + objectManagementNum + '\'' +
+                ", lotNum='" + lotNum + '\'' +
+                ", roadName='" + roadName + '\'' +
+                ", disposalMethodCode='" + disposalMethodCode + '\'' +
+                ", disposalMethodCodeName='" + disposalMethodCodeName + '\'' +
+                ", bidMethod='" + bidMethod + '\'' +
+                ", minimumBidPrice='" + minimumBidPrice + '\'' +
+                ", appraisedPrice='" + appraisedPrice + '\'' +
+                ", minimumBidPriceRate='" + minimumBidPriceRate + '\'' +
+                ", bidBeginDateTime='" + bidBeginDateTime + '\'' +
+                ", bidCloseDateTime='" + bidCloseDateTime + '\'' +
+                ", objectCondition='" + objectCondition + '\'' +
+                ", failBidCount='" + failBidCount + '\'' +
+                ", onbidViews='" + onbidViews + '\'' +
+                ", productDetailInfo='" + productDetailInfo + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", model='" + model + '\'' +
+                ", yearAndMonth='" + yearAndMonth + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", displacement='" + displacement + '\'' +
+                ", distanceDriven='" + distanceDriven + '\'' +
+                ", fuelType='" + fuelType + '\'' +
+                ", corporationName='" + corporationName + '\'' +
+                ", businessType='" + businessType + '\'' +
+                ", eventName='" + eventName + '\'' +
+                ", membershipName='" + membershipName + '\'' +
+                '}';
+    }
 }

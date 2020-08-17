@@ -42,18 +42,31 @@ public class CalendarApiController {
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
 
         List<Calendar> CalendarList = calendarService.getCalendarsByUserId(currentUser.getId());
-
+        System.out.println("CalendarList size : " + CalendarList.size());
         List<CalendarResponseDto> CalendarResponseDtoList = new ArrayList<>();
 
         for(Calendar calendar : CalendarList){
+            System.out.println(calendar.getId());
+            System.out.println(calendar.getProduct().getPublicAuctionNum());
+            System.out.println(calendar.getUser().getId());
             CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
 
             //calendarResponseDto.setPublicAuctionNum(calendar.getProduct().getPublicAuctionNum());
+
+            Product product = productService.getProduct(calendar.getProduct().getPublicAuctionNum());
+
+            System.out.println(product.getPublicAuctionNum());
+            System.out.println(product.getObjectName());
+
             calendarResponseDto.setUserId(calendar.getUser().getId());
-            calendarResponseDto.setProduct(productService.getProduct(calendar.getProduct().getPublicAuctionNum()));
+            calendarResponseDto.setProduct(product);
 
             CalendarResponseDtoList.add(calendarResponseDto);
         }
+
+        System.out.println(CalendarResponseDtoList.get(0).getProduct().getPublicAuctionNum());
+
+        System.out.println(CalendarResponseDtoList.get(0).getUserId());
 
         return CalendarResponseDtoList;
     }
