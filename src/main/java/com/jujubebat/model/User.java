@@ -71,21 +71,6 @@ public class User {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "calendar=" + calendar +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", emailVerified=" + emailVerified +
-                ", password='" + password + '\'' +
-                ", provider=" + provider +
-                ", providerId='" + providerId + '\'' +
-                '}';
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
