@@ -28,6 +28,7 @@ public class ProductApiController {
         this.productDetailService = productDetailService;
     }
 
+    /*
     @GetMapping
     public List<ProductResponseDto> getProducts(@RequestParam(defaultValue = "1") int pageNum){
 
@@ -35,13 +36,12 @@ public class ProductApiController {
 
         for(Product product : productService.getProducts(pageNum - 1)){
             ProductResponseDto productResponseDto = new ProductResponseDto();
-
         }
 
         return productResponseDtoList;
-    }
+    }*/
 
-    @GetMapping(path = "/search")
+    @GetMapping
     public List<ProductResponseDto> getProductsByOption(@RequestParam(defaultValue = "") String searchType,
                                                         @RequestParam(defaultValue = "") String keyword){
         List<Product> productList = new ArrayList<>();
@@ -59,7 +59,9 @@ public class ProductApiController {
 
         List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
 
-        if(productList.isEmpty()) return null;
+        System.out.println(productList.size());
+
+        if(productList.isEmpty()) return productResponseDtoList;
 
         for(Product product : productList){
             ProductResponseDto productResponseDto = new ProductResponseDto();
@@ -75,7 +77,32 @@ public class ProductApiController {
             productResponseDto.setObjectCondition(product.getObjectCondition());
             productResponseDto.setFailBidCount(product.getFailBidCount());
             productResponseDto.setOnbidViews(product.getOnbidViews());
+
+            productResponseDto.setNoticeNum(product.getNoticeNum());
+            productResponseDto.setPublicAuctionConditionNum(product.getPublicAuctionConditionNum());
+            productResponseDto.setObjectRecordNum(product.getObjectRecordNum());
+            productResponseDto.setScreenGroupCode(product.getScreenGroupCode());
+            productResponseDto.setBidNum(product.getBidNum());
+            productResponseDto.setLotNum(product.getLotNum());
+            productResponseDto.setRoadName(product.getRoadName());
+            productResponseDto.setDisposalMethodCode(product.getDisposalMethodCode());
+            productResponseDto.setDisposalMethodCodeName(product.getDisposalMethodCodeName());
+            productResponseDto.setBidMethod(product.getBidMethod());
+            productResponseDto.setProductDetailInfo(product.getProductDetailInfo());
+            productResponseDto.setManufacturer(product.getManufacturer());
+            productResponseDto.setModel(product.getModel());
+            productResponseDto.setYearAndMonth(product.getYearAndMonth());
+            productResponseDto.setTransmission(product.getTransmission());
+            productResponseDto.setDisplacement(product.getDisplacement());
+            productResponseDto.setDistanceDriven(product.getDistanceDriven());
+            productResponseDto.setFuelType(product.getFuelType());
+            productResponseDto.setCorporationName(product.getCorporationName());
+            productResponseDto.setBusinessType(product.getBusinessType());
+            productResponseDto.setEventName(product.getEventName());
+            productResponseDto.setMembershipName(product.getMembershipName());
+
             productResponseDtoList.add(productResponseDto);
+
         }
 
         return productResponseDtoList;

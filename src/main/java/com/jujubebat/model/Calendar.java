@@ -1,8 +1,11 @@
 package com.jujubebat.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 public class Calendar {
 
     @Id
@@ -10,7 +13,7 @@ public class Calendar {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "public_auction_num")
     private Product product;
 
     @ManyToOne
