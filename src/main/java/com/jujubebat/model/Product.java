@@ -1,10 +1,7 @@
 package com.jujubebat.model;
 
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
-import lombok.Data;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -14,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@ToString(exclude = {"product"})
 public class Product {
 
     @OneToMany(mappedBy = "product")
