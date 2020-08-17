@@ -46,6 +46,10 @@ public class CalendarService {
 
     }
 
+    public void removeCalendar(Long userId, Long publicAuctionNum){
+        //calendarRepository.deleteByUserIdAndPublicAuctionNum(userId,publicAuctionNum);
+    }
+
     //addCalendars(currentUser.getId(), calendarRequestDto)
 
 }

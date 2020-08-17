@@ -4,12 +4,14 @@ import com.jujubebat.dto.CalendarRequestDto;
 import com.jujubebat.dto.CalendarResponseDto;
 import com.jujubebat.exception.ResourceNotFoundException;
 import com.jujubebat.model.Calendar;
+import com.jujubebat.model.Product;
 import com.jujubebat.model.User;
 import com.jujubebat.repository.CalendarRepository;
 import com.jujubebat.repository.UserRepository;
 import com.jujubebat.security.CurrentUser;
 import com.jujubebat.security.UserPrincipal;
 import com.jujubebat.service.CalendarService;
+import com.jujubebat.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +26,13 @@ public class CalendarApiController {
 
     private final UserRepository userRepository;
     private final CalendarService calendarService;
+    private final ProductService productService;
 
     @Autowired
-    public CalendarApiController(UserRepository userRepository, CalendarService calendarService){
+    public CalendarApiController(UserRepository userRepository, CalendarService calendarService, ProductService productService){
         this.userRepository = userRepository;
         this.calendarService = calendarService;
+        this.productService = productService;
     }
 
     @GetMapping
@@ -44,8 +48,9 @@ public class CalendarApiController {
         for(Calendar calendar : CalendarList){
             CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
 
-            calendarResponseDto.setPublicAuctionNum(calendar.getProduct().getPublicAuctionNum());
+            //calendarResponseDto.setPublicAuctionNum(calendar.getProduct().getPublicAuctionNum());
             calendarResponseDto.setUserId(calendar.getUser().getId());
+            calendarResponseDto.setProduct(productService.getProduct(calendar.getProduct().getPublicAuctionNum()));
 
             CalendarResponseDtoList.add(calendarResponseDto);
         }
@@ -67,7 +72,10 @@ public class CalendarApiController {
     @PreAuthorize("hasRole('USER')")
     public void removeCalendars(@CurrentUser UserPrincipal userPrincipal,
                                 @PathVariable(name = "publicAuctionNum") Long publicAuctionNum) {
+
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
+
+        calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
     }
 
 }

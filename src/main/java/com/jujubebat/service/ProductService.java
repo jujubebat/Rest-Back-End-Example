@@ -27,6 +27,7 @@ public class ProductService {
         return product.get();
     }
 
+
     public Page<Product> getProducts(int pageNum){
         return productRepository.findAll(PageRequest.of(pageNum,pageSize));
     }
