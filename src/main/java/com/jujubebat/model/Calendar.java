@@ -1,20 +1,16 @@
 package com.jujubebat.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Calendar {
-    @Override
-    public String toString() {
-        return "Calendar{" +
-                "id=" + id +
-                ", product=" + product +
-                ", user=" + user +
-                '}';
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
