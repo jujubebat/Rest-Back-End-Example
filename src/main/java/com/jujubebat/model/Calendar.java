@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@ToString(exclude = {"product", "user"})
 public class Calendar {
 
     @Id
