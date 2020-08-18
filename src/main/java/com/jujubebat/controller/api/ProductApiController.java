@@ -6,14 +6,11 @@ import com.jujubebat.model.Product;
 import com.jujubebat.model.ProductDetail;
 import com.jujubebat.model.ProductImage;
 import com.jujubebat.service.ProductDetailService;
+import com.jujubebat.service.ProductImageService;
 import com.jujubebat.service.ProductService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +21,15 @@ public class ProductApiController {
 
     private final ProductService productService;
     private final ProductDetailService productDetailService;
-    private EntityManager em;
+    private final ProductImageService productImageService;
 
     @Autowired
-    public  ProductApiController(ProductService productService, ProductDetailService productDetailService){
+    public  ProductApiController(ProductService productService,
+                                 ProductDetailService productDetailService,
+                                 ProductImageService productImageService){
         this.productService = productService;
         this.productDetailService = productDetailService;
+        this.productImageService = productImageService;
     }
 
     /*
@@ -106,6 +106,16 @@ public class ProductApiController {
             productResponseDto.setEventName(product.getEventName());
             productResponseDto.setMembershipName(product.getMembershipName());
 
+            //ProductImgeResponseDto productImgeResponseDto = new ProductImgeResponseDto();
+            List<String> urls = new ArrayList<>();
+
+            for(ProductImage productImage : productImageService.getProductImageByProductId(product.getId())){
+                urls.add(productImage.getImgUrl());
+            }
+
+            //productImgeResponseDto.setImgUrls(urls);
+            productResponseDto.setImages(urls);
+            //productResponseDto.setImages(productImgeResponseDto);
             productResponseDtoList.add(productResponseDto);
 
         }

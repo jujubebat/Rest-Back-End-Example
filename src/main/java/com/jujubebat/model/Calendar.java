@@ -18,7 +18,7 @@ public class Calendar {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "public_auction_num")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne

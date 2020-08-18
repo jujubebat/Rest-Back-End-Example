@@ -20,7 +20,21 @@ public class Product {
     //@OneToMany(mappedBy = "product")
     //private List<Calendar> calendar = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+    private List<Calendar> calendars = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "product_detail_id")
+    private ProductDetail productDetail;
+
+    @OneToOne
+    @JoinColumn(name = "product_date_id")
+    private ProductDate productDate;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long publicAuctionNum; // 공매 번호
     private Long noticeNum; //공고 번호
     private Long publicAuctionConditionNum; // 공매 조건 번호

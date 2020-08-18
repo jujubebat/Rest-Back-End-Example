@@ -10,8 +10,10 @@ import java.util.*;
 import com.jujubebat.model.Product;
 import com.jujubebat.model.ProductDate;
 import com.jujubebat.model.ProductDetail;
+import com.jujubebat.model.ProductImage;
 import com.jujubebat.repository.ProductDateRepository;
 import com.jujubebat.repository.ProductDetailRepository;
+import com.jujubebat.repository.ProductImageRepository;
 import com.jujubebat.repository.ProductRepository;
 //import javafx.util.Pair;
 import org.slf4j.Logger;
@@ -42,6 +44,8 @@ public class OpenApiService {
     private final ProductRepository productRepository;
     private final ProductDetailRepository productDetailRepository;
     private final ProductDateRepository productDateRepository;
+    private final ProductImageRepository productImageRepository;
+
     //HashMap<Pair<Long, Long>, Object> m;
     int ProductfileNum = 0;
     int ProductDetailfileNum = 0;
@@ -50,10 +54,12 @@ public class OpenApiService {
     @Autowired
     public OpenApiService(ProductRepository productRepository,
                           ProductDetailRepository productDetailRepository,
-                          ProductDateRepository productDateRepository) {
+                          ProductDateRepository productDateRepository,
+                          ProductImageRepository productImageRepository) {
         this.productRepository = productRepository;
         this.productDetailRepository = productDetailRepository;
         this.productDateRepository = productDateRepository;
+        this.productImageRepository = productImageRepository;
     }
 
     public void updateDB() throws IOException, SAXException, ParserConfigurationException, TransformerException {
@@ -139,6 +145,7 @@ public class OpenApiService {
 
                 NodeList nList = doc.getElementsByTagName("item");
 
+
                 // xml 파일 저장
                 /*
                 Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -146,8 +153,8 @@ public class OpenApiService {
                 Source input = new DOMSource(doc);
                 transformer.transform(input, output);*/
 
-                //System.out.println("#######공매물건목록조회#######");
-                //System.out.println(callBackURL);
+                System.out.println("#######공매물건목록조회#######");
+                System.out.println(callBackURL);
 
                 if (nList.getLength() == 0) break;
 
@@ -157,8 +164,11 @@ public class OpenApiService {
 
                     Node nNode = nList.item(j);
 
+
+
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
+
                         Product product = new Product();  // [빌터 패턴으로 객체 생성해보기]
                         product.setPublicAuctionNum(Long.parseLong(getTagValue("PBCT_NO", eElement)));
                         product.setNoticeNum(Long.parseLong(getTagValue("PLNM_NO", eElement)));
@@ -196,9 +206,24 @@ public class OpenApiService {
                         product.setEventName(getTagValue("ITM_NM", eElement));
                         product.setMembershipName(getTagValue("MMB_RGT_NM", eElement));
 
-                        //System.out.println(getTagValue("BID_MTD_NM", eElement));
-
                         productRepository.save(product);
+
+
+                        NodeList imgeList = eElement.getElementsByTagName("CLTR_IMG_FILES").item(0).getChildNodes();
+                        Element e = (Element) imgeList;
+
+                        for(int k= 0; k<e.getElementsByTagName("CLTR_IMG_FILE").getLength(); k++){
+                            System.out.println(e.getElementsByTagName("CLTR_IMG_FILE").item(k).getChildNodes().item(0).getNodeValue());
+                            ProductImage productImage = new ProductImage();
+                            productImage.setProduct(product);
+                            productImage.setImgUrl(e.getElementsByTagName("CLTR_IMG_FILE").item(k).getChildNodes().item(0).getNodeValue());
+                            productImageRepository.save(productImage);
+                        }
+
+                        System.out.println("##############################################");
+
+
+
 
                         String PLNM_NO = getTagValue("PLNM_NO", eElement);
                         String PBCT_NO = getTagValue("PBCT_NO", eElement);

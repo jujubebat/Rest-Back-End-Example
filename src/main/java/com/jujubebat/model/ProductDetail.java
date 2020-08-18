@@ -9,6 +9,9 @@ import javax.persistence.*;
 public class ProductDetail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Long PBCT_NO; // 공매번호
 
     private Long PLNM_NO; // 공고번호

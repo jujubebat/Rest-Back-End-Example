@@ -3,9 +3,12 @@ package com.jujubebat.dto;
 import lombok.Data;
 
 import javax.persistence.Lob;
+import java.util.List;
 
 @Data
 public class ProductResponseDto {
+
+    private List<String> images;
 
     private Long publicAuctionNum; // 공매 번호
     private Long noticeNum; //공고 번호

@@ -44,34 +44,28 @@ public class CalendarApiController {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
 
-        List<Calendar> CalendarList = calendarService.getCalendarsByUserId(currentUser.getId());
-        System.out.println("CalendarList size : " + CalendarList.size());
+       // List<Calendar> CalendarList = calendarService.getCalendarsByUserId(currentUser.getId());
+       // System.out.println("CalendarList size : " + CalendarList.size());
+       // List<CalendarResponseDto> CalendarResponseDtoList = new ArrayList<>();
+
+       // for(Calendar calendar : CalendarList){
+
+        calendarService.getCalendarsByUserId(currentUser.getId());
+
+        Calendar calendar = calendarService.getCalendarsByUserId(currentUser.getId()).get(0);
+
+        //calendar.getUser()
+
         List<CalendarResponseDto> CalendarResponseDtoList = new ArrayList<>();
 
-        for(Calendar calendar : CalendarList){
-            System.out.println(calendar.getId());
-            System.out.println(calendar.getProduct().getPublicAuctionNum());
-            System.out.println(calendar.getUser().getId());
-            CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
 
-            //calendarResponseDto.setPublicAuctionNum(calendar.getProduct().getPublicAuctionNum());
-
-
-            Product product = calendar.getProduct();
-                    // productService.getProduct(calendar.getProduct().getPublicAuctionNum());
-
-            System.out.println(product.getPublicAuctionNum());
-            System.out.println(product.getObjectName());
+        CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
 
             calendarResponseDto.setUserId(calendar.getUser().getId());
-            calendarResponseDto.setProduct(product);
+            calendarResponseDto.setProduct(calendar.getProduct());
 
             CalendarResponseDtoList.add(calendarResponseDto);
-        }
-
-        System.out.println(CalendarResponseDtoList.get(0).getProduct().getPublicAuctionNum());
-
-        System.out.println(CalendarResponseDtoList.get(0).getUserId());
+       // }
 
         return CalendarResponseDtoList;
     }

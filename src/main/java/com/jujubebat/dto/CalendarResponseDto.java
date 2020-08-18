@@ -10,8 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString(exclude = {"product"})
 public class CalendarResponseDto {
-    //private Long publicAuctionNum;
-    private Product product;
     private Long userId;
+    private Product product;
 }
 

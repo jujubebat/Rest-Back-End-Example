@@ -11,9 +11,6 @@ C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\co
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\model\Product.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\UserPrincipal.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\oauth2\user\OAuth2UserInfoFactory.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\repository\CarRepository.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\model\Car.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\dao\CategoryDaoSqls.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\exception\BadRequestException.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\controller\UserController.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\model\ProductImage.java
@@ -23,6 +20,7 @@ C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\mo
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\CurrentUser.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\exception\OAuth2AuthenticationProcessingException.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\repository\ProductDateRepository.java
+C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\repository\ProductImageRepository.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\oauth2\OAuth2AuthenticationFailureHandler.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\repository\ProductDetailRepository.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\repository\CalendarRepository.java
@@ -30,7 +28,6 @@ C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\se
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\dto\CalendarRequestDto.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\model\Calendar.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\oauth2\user\GoogleOAuth2UserInfo.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\dto\Category.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\RestAuthenticationEntryPoint.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\ProductDetailService.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\CalendarService.java
@@ -39,9 +36,7 @@ C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\se
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\oauth2\HttpCookieOAuth2AuthorizationRequestRepository.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\UserService.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\ProductService.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\controller\CategoriesApiController.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\payload\LoginRequest.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\CategoryService.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\controller\AuthController.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\TokenAuthenticationFilter.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\model\User.java
@@ -51,13 +46,10 @@ C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\dt
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\util\CookieUtils.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\config\SwaggerConfig.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\security\oauth2\user\FacebookOAuth2UserInfo.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\controller\api\CarApiController.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\payload\SignUpRequest.java
+C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\ProductImageService.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\dto\ProductResponseDto.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\schedule\ScheduleTask.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\service\CarService.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\dao\CategoryDao.java
-C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\model\Parts.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\Application.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\exception\ResourceNotFoundException.java
 C:\Users\bbwwp\IdeaProjects\Rest-Back-End-Example\src\main\java\com\jujubebat\config\WebMvcConfig.java

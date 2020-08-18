@@ -19,8 +19,8 @@ import java.util.List;
 })
 public class User {
 
-    @OneToMany(mappedBy = "user")
-    private List<Calendar> calendar = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Calendar> calendars = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
