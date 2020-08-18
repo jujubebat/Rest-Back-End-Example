@@ -39,7 +39,7 @@ public class CalendarService {
         Optional<User> user = userRepository.findById(userId);
         calendar.setUser(user.get());
 
-        Optional<Product> product = productRepository.findById(publicAuctionNum);
+        Optional<Product> product = productRepository.findByPublicAuctionNum(publicAuctionNum);
         calendar.setProduct(product.get());
 
         calendarRepository.save(calendar);
