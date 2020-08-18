@@ -2,9 +2,10 @@ package com.jujubebat.controller.api;
 
 import com.jujubebat.dto.ProductDetailResponseDto;
 import com.jujubebat.dto.ProductResponseDto;
-import com.jujubebat.model.Product;
-import com.jujubebat.model.ProductDetail;
-import com.jujubebat.model.ProductImage;
+import com.jujubebat.model.*;
+import com.jujubebat.repository.CalendarRepository;
+import com.jujubebat.repository.ProductRepository;
+import com.jujubebat.repository.UserRepository;
 import com.jujubebat.service.ProductDetailService;
 import com.jujubebat.service.ProductImageService;
 import com.jujubebat.service.ProductService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,27 +25,48 @@ public class ProductApiController {
     private final ProductDetailService productDetailService;
     private final ProductImageService productImageService;
 
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final CalendarRepository calendarRepository;
+
     @Autowired
     public  ProductApiController(ProductService productService,
                                  ProductDetailService productDetailService,
-                                 ProductImageService productImageService){
+                                 ProductImageService productImageService,
+
+                                 UserRepository userRepository,
+                                 ProductRepository productRepository,
+                                 CalendarRepository calendarRepository){
         this.productService = productService;
         this.productDetailService = productDetailService;
         this.productImageService = productImageService;
+
+        this.userRepository = userRepository;
+        this.productRepository = productRepository;
+        this.calendarRepository = calendarRepository;
     }
 
-    /*
-    @GetMapping
-    public List<ProductResponseDto> getProducts(@RequestParam(defaultValue = "1") int pageNum){
 
-        List<ProductResponseDto> productResponseDtoList = new ArrayList<>() ;
 
-        for(Product product : productService.getProducts(pageNum - 1)){
-            ProductResponseDto productResponseDto = new ProductResponseDto();
-        }
+    @GetMapping(path = "/test/{value}")
+    public void test(@PathVariable(name = "value") Long value){
 
-        return productResponseDtoList;
-    }*/
+        Calendar calendar = new Calendar();
+
+        Optional<User> user = userRepository.findById(Long.parseLong("1"));
+        calendar.setUser(user.get());
+
+        Optional<Product> product = productRepository.findByPublicAuctionNum(value);
+
+
+        // Optional<Product> product = productRepository.findById(Long.parseLong("1"));
+
+        System.out.println(product.get().getObjectName());
+      //  calendar.setProduct(product.get());
+
+       // calendarRepository.save(calendar);
+
+    }
 
     @GetMapping
     public List<ProductResponseDto> getProductsByOption(@RequestParam(defaultValue = "") String searchType,
