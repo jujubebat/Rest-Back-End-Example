@@ -39,23 +39,7 @@ public class CalendarApiController {
     }
 
 
-    @GetMapping(path = "/test")
-    public CalendarResponseDto test(){
 
-        List<Calendar> calendarList = calendarService.getCalendarsByUserId(Long.parseLong("1"));
-
-        List<Product> productList = new ArrayList<>();
-
-        for(Calendar calendar : calendarList){
-            productList.add(calendar.getProduct());
-        }
-
-        CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
-        calendarResponseDto.setUserId(Long.parseLong("1"));
-        calendarResponseDto.setProductList(productList);
-        return calendarResponseDto;
-
-    }
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")
@@ -96,7 +80,6 @@ public class CalendarApiController {
                                 @PathVariable(name = "publicAuctionNum") Long publicAuctionNum) {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
-        productService.getProductById(publicAuctionNum);
         calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
     }
 

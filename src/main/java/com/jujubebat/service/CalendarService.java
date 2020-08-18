@@ -51,9 +51,9 @@ public class CalendarService {
     }
 
     public void removeCalendar(Long userId, Long productId){
-        calendarRepository.deleteByUserIdAndProductId(userId, productId);
+        Optional<Product> product =  productRepository.findByPublicAuctionNum(productId);
+        calendarRepository.deleteByUserIdAndProductId(userId, product.get().getId());
     }
 
-    //addCalendars(currentUser.getId(), calendarRequestDto)
 
 }
