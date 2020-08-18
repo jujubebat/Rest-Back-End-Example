@@ -76,11 +76,11 @@ public class CalendarApiController {
 
     @DeleteMapping(path = "/{publicAuctionNum}")
     @PreAuthorize("hasRole('USER')")
-    public void removeCalendars(@CurrentUser UserPrincipal userPrincipal,
+    public boolean removeCalendars(@CurrentUser UserPrincipal userPrincipal,
                                 @PathVariable(name = "publicAuctionNum") Long publicAuctionNum) {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
-        calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
+        return calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
     }
 
 }

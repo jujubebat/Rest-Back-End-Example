@@ -50,9 +50,9 @@ public class CalendarService {
 
     }
 
-    public void removeCalendar(Long userId, Long productId){
+    public boolean removeCalendar(Long userId, Long productId){
         Optional<Product> product =  productRepository.findByPublicAuctionNum(productId);
-        calendarRepository.deleteByUserIdAndProductId(userId, product.get().getId());
+        return calendarRepository.deleteByUserIdAndProductId(userId, product.get().getId());
     }
 
 
