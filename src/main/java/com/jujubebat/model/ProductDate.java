@@ -1,6 +1,7 @@
 package com.jujubebat.model;
 
 import lombok.Data;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,36 +10,40 @@ import java.util.Date;
 @Entity
 public class ProductDate {
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long PLNM_NO;
+    private Long publicAuctionNum; // 공매 번호
 
-    private Long PBCT_NO;
+    private Long noticeNum; // 공고번호
 
-    private String PBCT_SEQ;
+    private String publicAuctionSequence; // 공매 회차
 
-    private String PBCT_DGR;
+    private String publicAuctionDegree; // 공매 차수
 
-    private String BID_DVSN_NM;
+    private String bidDivisionName; // 입찰구분
 
-    private String TWPS_LSTH_USBD_YN;
+    private String lessTwoPeopleFailBidFlag; // 2인 미만 유찰 여부
 
-    private String TWTM_GTHR_BID_PSBL_YN;
+    private String moreTwoSequenceBidFlag; //2회 이상 입찰가능 여부
 
-    private String ELTR_GRT_DOC_USE_YN;
+    private String electronicWarrantyFlag; // 전자보증서 여부
 
-    private Long PTCT_CMSN;
+    private Long participationFee; // 참가 수수료
 
-    private Double TDPS_RT;
+    private Double bidDepositRate; // 입찰 보증금률
 
-    private String PBCT_BEGN_DTM;
+    private String bidStartDateTime; // 입찰 시작 일시
 
-    private String PBCT_CLS_DTM;
+    private String bidEndDateTime; // 입찰 마감 일시
 
-    private String PBCT_EXCT_DTM;
+    private String bidOpenDateTime; // 개찰 일시
 
-    private String OPBD_PLC_CNTN;
+    private String bidOpenPlace; // 개찰장소내용
 
 }

@@ -275,34 +275,34 @@ public class OpenApiService {
 
         ProductDetail productDetail = new ProductDetail();
 
-        productDetail.setPLNM_NO(Long.parseLong(PLNM_NO));
-        productDetail.setPBCT_NO(Long.parseLong(PBCT_NO));
-        productDetail.setPLNM_NM(getTagValue("PLNM_NM", eElement));
-        productDetail.setORG_NM(getTagValue("ORG_NM", eElement));
-        productDetail.setRSBY_DEPT(getTagValue("RSBY_DEPT", eElement));
-        productDetail.setPSCG_NM(getTagValue("PSCG_NM", eElement));
-        productDetail.setPSCG_TPNO(getTagValue("PSCG_TPNO", eElement));
-        productDetail.setPSCG_EMAL_ADRS(getTagValue("PSCG_EMAL_ADRS", eElement));
-        productDetail.setPLNM_KIND_NM(getTagValue("PLNM_KIND_NM", eElement));
-        productDetail.setPLNM_DT(getTagValue("PLNM_DT", eElement));
-        productDetail.setPLNM_YR(getTagValue("PLNM_YR", eElement));
-        productDetail.setPLNM_SEQ(getTagValue("PLNM_SEQ", eElement));
-        productDetail.setPRPT_DVSN_NM(getTagValue("PRPT_DVSN_NM", eElement));
-        productDetail.setAST_DVSN_NM(getTagValue("AST_DVSN_NM", eElement));
-        productDetail.setPLNM_MNMT_NO(getTagValue("PLNM_MNMT_NO", eElement));
-        productDetail.setORG_PLNM_NO(getTagValue("ORG_PLNM_NO", eElement));
-        productDetail.setRLTN_PLNM_NO(getTagValue("RLTN_PLNM_NO", eElement));
-        productDetail.setRLTN_PLNM_TITL(getTagValue("RLTN_PLNM_TITL", eElement));
+        productDetail.setNoticeNum(Long.parseLong(PLNM_NO));
+        productDetail.setPublicAuctionNum(Long.parseLong(PBCT_NO));
+        productDetail.setNoticeName(getTagValue("PLNM_NM", eElement));
+        productDetail.setNoticeOrganization(getTagValue("ORG_NM", eElement));
+        productDetail.setManagementDepartment(getTagValue("RSBY_DEPT", eElement));
+        productDetail.setManagerName(getTagValue("PSCG_NM", eElement));
+        productDetail.setManagerTel(getTagValue("PSCG_TPNO", eElement));
+        productDetail.setManagerEmail(getTagValue("PSCG_EMAL_ADRS", eElement));
+        productDetail.setNoticeType(getTagValue("PLNM_KIND_NM", eElement));
+        productDetail.setNoticeDateTime(getTagValue("PLNM_DT", eElement));
+        productDetail.setNoticeYear(getTagValue("PLNM_YR", eElement));
+        productDetail.setNoticeSequence(getTagValue("PLNM_SEQ", eElement));
+        productDetail.setPropertyDivision(getTagValue("PRPT_DVSN_NM", eElement));
+        productDetail.setAssetDivision(getTagValue("AST_DVSN_NM", eElement));
+        productDetail.setNoticeManagementName(getTagValue("PLNM_MNMT_NO", eElement));
+        productDetail.setOrganizationNoticeNum(getTagValue("ORG_PLNM_NO", eElement));
+        productDetail.setRelateNoticeNum(getTagValue("RLTN_PLNM_NO", eElement));
+        productDetail.setRelateNoticeName(getTagValue("RLTN_PLNM_TITL", eElement));
 
-        productDetail.setBID_MTD_NM(getTagValue("BID_MTD_NM", eElement));
-        productDetail.setDPSL_MTD_NM(getTagValue("DPSL_MTD_NM", eElement));
-        productDetail.setCPTN_MTD_NM(getTagValue("CPTN_MTD_NM", eElement));
-        productDetail.setTOT_AMT_UNPC_DVSN_NM(getTagValue("TOT_AMT_UNPC_DVSN_NM", eElement));
-        productDetail.setPTCT_QLFC(getTagValue("PTCT_QLFC", eElement));
-        productDetail.setRBD_YN(getTagValue("RBD_YN", eElement));
-        productDetail.setCOMN_BID_PMSN_YN(getTagValue("COMN_BID_PMSN_YN", eElement));
-        productDetail.setSUBT_BID_PMSN_YN(getTagValue("SUBT_BID_PMSN_YN", eElement));
-        productDetail.setPLNM_DOC(getTagValue("PLNM_DOC", eElement));
+        productDetail.setBidMethodType(getTagValue("BID_MTD_NM", eElement));
+        productDetail.setDisposeType(getTagValue("DPSL_MTD_NM", eElement));
+        productDetail.setCompetitionType(getTagValue("CPTN_MTD_NM", eElement));
+        productDetail.setTotalAmountUnitPriceDivisionName(getTagValue("TOT_AMT_UNPC_DVSN_NM", eElement));
+        productDetail.setEligibility(getTagValue("PTCT_QLFC", eElement));
+        productDetail.setReBidFlag(getTagValue("RBD_YN", eElement));
+        productDetail.setCommonBidFlag(getTagValue("COMN_BID_PMSN_YN", eElement));
+        productDetail.setSubstituteBidFlag(getTagValue("SUBT_BID_PMSN_YN", eElement));
+        productDetail.setNoticeDocument(getTagValue("PLNM_DOC", eElement));
         productDetail.setBidDateInfosTotalCount(getTagValue("bidDateInfosTotalCount", eElement));
         productDetail.setFilesTotalCount(getTagValue("filesTotalCount", eElement));
 
@@ -349,20 +349,20 @@ public class OpenApiService {
                 Element eElement = (Element) nNode;
                 ProductDate productDate = new ProductDate();  // [빌터 패턴으로 객체 생성해보기]
 
-                productDate.setPLNM_NO(Long.parseLong(PLNM_NO));
-                productDate.setPBCT_NO(Long.parseLong(PBCT_NO));
-                productDate.setPBCT_SEQ(getTagValue("PBCT_SEQ", eElement));
-                productDate.setPBCT_DGR(getTagValue("PBCT_DGR", eElement));
-                productDate.setBID_DVSN_NM(getTagValue("BID_DVSN_NM", eElement));
-                productDate.setTWPS_LSTH_USBD_YN(getTagValue("TWPS_LSTH_USBD_YN", eElement));
-                productDate.setTWTM_GTHR_BID_PSBL_YN(getTagValue("TWTM_GTHR_BID_PSBL_YN", eElement));
-                productDate.setELTR_GRT_DOC_USE_YN(getTagValue("ELTR_GRT_DOC_USE_YN", eElement));
-                productDate.setPTCT_CMSN(Long.parseLong(getTagValue("PTCT_CMSN", eElement)));
-                productDate.setTDPS_RT(Double.parseDouble(getTagValue("TDPS_RT", eElement)));
-                productDate.setPBCT_BEGN_DTM(getTagValue("PBCT_BEGN_DTM", eElement));
-                productDate.setPBCT_CLS_DTM(getTagValue("PBCT_CLS_DTM", eElement));
-                productDate.setPBCT_EXCT_DTM(getTagValue("PBCT_EXCT_DTM", eElement));
-                productDate.setOPBD_PLC_CNTN(getTagValue("OPBD_PLC_CNTN", eElement));
+                productDate.setNoticeNum(Long.parseLong(PLNM_NO));
+                productDate.setPublicAuctionNum(Long.parseLong(PBCT_NO));
+                productDate.setPublicAuctionSequence(getTagValue("PBCT_SEQ", eElement));
+                productDate.setPublicAuctionDegree(getTagValue("PBCT_DGR", eElement));
+                productDate.setBidDivisionName(getTagValue("BID_DVSN_NM", eElement));
+                productDate.setLessTwoPeopleFailBidFlag(getTagValue("TWPS_LSTH_USBD_YN", eElement));
+                productDate.setMoreTwoSequenceBidFlag(getTagValue("TWTM_GTHR_BID_PSBL_YN", eElement));
+                productDate.setElectronicWarrantyFlag(getTagValue("ELTR_GRT_DOC_USE_YN", eElement));
+                productDate.setParticipationFee(Long.parseLong(getTagValue("PTCT_CMSN", eElement)));
+                productDate.setBidDepositRate(Double.parseDouble(getTagValue("TDPS_RT", eElement)));
+                productDate.setBidStartDateTime(getTagValue("PBCT_BEGN_DTM", eElement));
+                productDate.setBidEndDateTime(getTagValue("PBCT_CLS_DTM", eElement));
+                productDate.setBidOpenDateTime(getTagValue("PBCT_EXCT_DTM", eElement));
+                productDate.setBidOpenPlace(getTagValue("OPBD_PLC_CNTN", eElement));
 
                 productDateRepository.save(productDate);
                 productDateList.add(productDate);

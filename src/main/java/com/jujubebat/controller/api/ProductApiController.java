@@ -126,16 +126,8 @@ public class ProductApiController {
     }
 
     @GetMapping(path = "/{publicAuctionNum}") //상세 조회로 만들기
-    public ProductDetailResponseDto getProuct(@PathVariable(name = "publicAuctionNum") Long publicAuctionNum){
-
-        // [DTO - Entity간 변환, model mapper 적용해보기, DTO - Entity 변환을 하는 이유 생각해보기]
-        ProductDetail productDetail = productDetailService.getProductDetail(publicAuctionNum);
-
-        ProductDetailResponseDto productDetailResponseDto = new ProductDetailResponseDto();
-
-        productDetailResponseDto.setPublicAuctionNum(productDetail.getPBCT_NO());
-
-        return productDetailResponseDto;
+    public Product getProuct(@PathVariable(name = "publicAuctionNum") Long publicAuctionNum){
+        return productService.getProductWithDetailDate(publicAuctionNum);
     }
 
 }

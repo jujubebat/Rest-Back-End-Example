@@ -25,6 +25,6 @@ public class ScheduleTask {
     @Scheduled(fixedDelay = 2000)
     public void task1() throws IOException, URISyntaxException, ParserConfigurationException, SAXException, TransformerException {
         System.out.println("api 호출완료" + LocalDateTime.now());
-        //openApiService.getProductList();
+        openApiService.getProductList();
     }
 }

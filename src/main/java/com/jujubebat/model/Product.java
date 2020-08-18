@@ -30,10 +30,8 @@ public class Product {
     @JoinColumn(name = "product_detail_id")
     private ProductDetail productDetail;
 
-
-    @OneToOne
-    @JoinColumn(name = "product_date_id")
-    private ProductDate productDate;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+    private List<ProductDate> productDate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
