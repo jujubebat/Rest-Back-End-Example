@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface CalendarRepository extends JpaRepository<Calendar, Long> {
 
     List<Calendar> findByUserId(Long userId);
-    //void deleteByUserIdAndPublicAuctionNum(Long userId, Long publicAuctionNum);
+    void deleteByUserIdAndProductId(Long userId, Long productId);
 }

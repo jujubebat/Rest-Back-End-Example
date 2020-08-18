@@ -72,9 +72,8 @@ public class CalendarApiController {
         }
 
         CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
-        calendarResponseDto.setUserId(currentUser.getId());
+        calendarResponseDto.setUserId(Long.parseLong("1"));
         calendarResponseDto.setProductList(productList);
-
         return calendarResponseDto;
     }
 
@@ -97,7 +96,7 @@ public class CalendarApiController {
                                 @PathVariable(name = "publicAuctionNum") Long publicAuctionNum) {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
-
+        productService.getProductById(publicAuctionNum);
         calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
     }
 
