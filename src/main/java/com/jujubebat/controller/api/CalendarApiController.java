@@ -40,34 +40,23 @@ public class CalendarApiController {
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")
-    public List<CalendarResponseDto> getCalendars(@CurrentUser UserPrincipal userPrincipal) {
+    public CalendarResponseDto getCalendars(@CurrentUser UserPrincipal userPrincipal) {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
 
-       // List<Calendar> CalendarList = calendarService.getCalendarsByUserId(currentUser.getId());
-       // System.out.println("CalendarList size : " + CalendarList.size());
-       // List<CalendarResponseDto> CalendarResponseDtoList = new ArrayList<>();
+        List<Calendar> calendarList = calendarService.getCalendarsByUserId(currentUser.getId());
 
-       // for(Calendar calendar : CalendarList){
+        List<Product> productList = new ArrayList<>();
 
-        calendarService.getCalendarsByUserId(currentUser.getId());
-
-        Calendar calendar = calendarService.getCalendarsByUserId(currentUser.getId()).get(0);
-
-        //calendar.getUser()
-
-        List<CalendarResponseDto> CalendarResponseDtoList = new ArrayList<>();
-
+        for(Calendar calendar : calendarList){
+            productList.add(calendar.getProduct());
+        }
 
         CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
+        calendarResponseDto.setUserId(currentUser.getId());
+        calendarResponseDto.setProductList(productList);
 
-            calendarResponseDto.setUserId(calendar.getUser().getId());
-            calendarResponseDto.setProduct(calendar.getProduct());
-
-            CalendarResponseDtoList.add(calendarResponseDto);
-       // }
-
-        return CalendarResponseDtoList;
+        return calendarResponseDto;
     }
 
 // @RequestBody ReservationInfoParam reservationParam
