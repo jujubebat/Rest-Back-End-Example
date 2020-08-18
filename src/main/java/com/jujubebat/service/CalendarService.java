@@ -40,6 +40,7 @@ public class CalendarService {
         calendar.setUser(user.get());
 
         Optional<Product> product = productRepository.findByPublicAuctionNum(publicAuctionNum);
+        System.out.println(product.get().getObjectName());
         calendar.setProduct(product.get());
 
         calendarRepository.save(calendar);
