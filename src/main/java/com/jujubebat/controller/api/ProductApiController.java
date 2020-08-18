@@ -1,5 +1,6 @@
 package com.jujubebat.controller.api;
 
+import com.jujubebat.dto.CalendarResponseDto;
 import com.jujubebat.dto.ProductDetailResponseDto;
 import com.jujubebat.dto.ProductResponseDto;
 import com.jujubebat.model.*;
@@ -48,22 +49,6 @@ public class ProductApiController {
 
 
 
-    @GetMapping(path = "/test/{value}")
-    public void test(@PathVariable(name = "value") Long value){
-
-        Calendar calendar = new Calendar();
-
-        Optional<User> user = userRepository.findById(Long.parseLong("1"));
-        calendar.setUser(user.get());
-
-        Optional<Product> product = productRepository.findByPublicAuctionNum(value);
-
-        System.out.println(product.get().getObjectName());
-        calendar.setProduct(product.get());
-
-        calendarRepository.save(calendar);
-
-    }
 
     @GetMapping
     public List<ProductResponseDto> getProductsByOption(@RequestParam(defaultValue = "") String searchType,

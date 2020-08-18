@@ -1,5 +1,8 @@
 package com.jujubebat.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import lombok.*;
 import org.springframework.context.annotation.Primary;
@@ -11,7 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@ToString(exclude = {"product"})
 public class Product {
 
    // @OneToMany(mappedBy = "product")
@@ -20,13 +22,14 @@ public class Product {
     //@OneToMany(mappedBy = "product")
     //private List<Calendar> calendar = new ArrayList<>();
 
-
+    @JsonIgnore // 무한 루프 방지를 위해 사용
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
     private List<Calendar> calendars = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "product_detail_id")
     private ProductDetail productDetail;
+
 
     @OneToOne
     @JoinColumn(name = "product_date_id")
@@ -35,6 +38,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long publicAuctionNum; // 공매 번호
     private Long noticeNum; //공고 번호
     private Long publicAuctionConditionNum; // 공매 조건 번호
