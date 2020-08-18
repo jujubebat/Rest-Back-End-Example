@@ -13,6 +13,8 @@ import com.jujubebat.security.UserPrincipal;
 import com.jujubebat.service.CalendarService;
 import com.jujubebat.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +40,6 @@ public class CalendarApiController {
         this.productService = productService;
     }
 
-
-
-
     @GetMapping
     @PreAuthorize("hasRole('USER')")
     public CalendarResponseDto getCalendars(@CurrentUser UserPrincipal userPrincipal) {
@@ -61,26 +60,25 @@ public class CalendarApiController {
         return calendarResponseDto;
     }
 
-// @RequestBody ReservationInfoParam reservationParam
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public boolean addCalendars(@CurrentUser UserPrincipal userPrincipal,
+    public Object addCalendars(@CurrentUser UserPrincipal userPrincipal,
                              @RequestBody CalendarRequestDto calendarRequestDto) {
-
-
-
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
         calendarService.addCalendars(currentUser.getId(), calendarRequestDto.getPublicAuctionNum());
-        return true; // 데이터 입력 올바르게 되었으면 true 리턴하도록 수정.
+        return new ResponseEntity<Void>(HttpStatus.CREATED); // 데이터 입력 올바르게 되었으면 true 리턴하도록 수정.
     }
 
     @DeleteMapping(path = "/{publicAuctionNum}")
     @PreAuthorize("hasRole('USER')")
-    public boolean removeCalendars(@CurrentUser UserPrincipal userPrincipal,
+    public Object removeCalendars(@CurrentUser UserPrincipal userPrincipal,
                                 @PathVariable(name = "publicAuctionNum") Long publicAuctionNum) {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
-        return calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
+        calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
+        //return
     }
 
 }

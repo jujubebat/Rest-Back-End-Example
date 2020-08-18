@@ -47,9 +47,6 @@ public class ProductApiController {
         this.calendarRepository = calendarRepository;
     }
 
-
-
-
     @GetMapping
     public List<ProductResponseDto> getProductsByOption(@RequestParam(defaultValue = "") String searchType,
                                                         @RequestParam(defaultValue = "") String keyword){
