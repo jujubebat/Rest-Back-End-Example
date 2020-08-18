@@ -56,7 +56,7 @@ public class CalendarApiController {
         }
 
         CalendarResponseDto calendarResponseDto = new CalendarResponseDto();
-        calendarResponseDto.setUserId(Long.parseLong("1"));
+        calendarResponseDto.setUserId(currentUser.getId());
         calendarResponseDto.setProductList(productList);
         return calendarResponseDto;
     }
