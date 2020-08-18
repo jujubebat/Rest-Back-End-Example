@@ -141,16 +141,4 @@ public class ProductApiController {
         return productDetailResponseDto;
     }
 
-    /*
-    @GetMapping(path = "/{publicAuctionNum}") //상세 조회로 만들기
-    public ProductDetailResponseDto getProuct(@PathVariable(name = "publicAuctionNum") Long publicAuctionNum){
-
-        ProductDetail productDetail = productDetailService.getProductDetail(publicAuctionNum);
-
-        ProductDetailResponseDto productDetailResponseDto = new ProductDetailResponseDto();
-
-        productDetailResponseDto.setPublicAuctionNum(productDetail.getPBCT_NO());
-
-        return productDetailResponseDto;
-    }*/
 }

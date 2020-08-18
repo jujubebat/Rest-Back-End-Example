@@ -11,7 +11,7 @@ public class ProductDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     private Long PLNM_NO;
 
