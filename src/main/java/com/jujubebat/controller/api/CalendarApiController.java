@@ -75,6 +75,9 @@ public class CalendarApiController {
     @PreAuthorize("hasRole('USER')")
     public boolean addCalendars(@CurrentUser UserPrincipal userPrincipal,
                              @RequestBody CalendarRequestDto calendarRequestDto) {
+
+
+
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
         calendarService.addCalendars(currentUser.getId(), calendarRequestDto.getPublicAuctionNum());
         return true; // 데이터 입력 올바르게 되었으면 true 리턴하도록 수정.

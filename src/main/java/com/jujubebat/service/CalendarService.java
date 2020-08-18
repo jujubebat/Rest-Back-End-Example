@@ -34,13 +34,26 @@ public class CalendarService {
     }
 
     public void addCalendars(Long userId, Long publicAuctionNum){
-        Calendar calendar = new Calendar();
+        /*Calendar calendar = new Calendar();
 
         Optional<User> user = userRepository.findById(userId);
         calendar.setUser(user.get());
 
         Optional<Product> product = productRepository.findByPublicAuctionNum(publicAuctionNum);
         System.out.println(product.get().getObjectName());
+        calendar.setProduct(product.get());
+
+        calendarRepository.save(calendar);*/
+
+        System.out.println(userId + " // " +publicAuctionNum);
+
+        Calendar calendar = new Calendar();
+
+        Optional<User> user = userRepository.findById(userId);
+        calendar.setUser(user.get());
+
+        Optional<Product> product = productRepository.findByPublicAuctionNum(publicAuctionNum);
+
         calendar.setProduct(product.get());
 
         calendarRepository.save(calendar);

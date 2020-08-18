@@ -58,13 +58,10 @@ public class ProductApiController {
 
         Optional<Product> product = productRepository.findByPublicAuctionNum(value);
 
-
-        // Optional<Product> product = productRepository.findById(Long.parseLong("1"));
-
         System.out.println(product.get().getObjectName());
-      //  calendar.setProduct(product.get());
+        calendar.setProduct(product.get());
 
-       // calendarRepository.save(calendar);
+        calendarRepository.save(calendar);
 
     }
 
