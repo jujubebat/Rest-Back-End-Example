@@ -71,6 +71,7 @@ public class User {
         this.email = email;
     }
 
+
     public String getImageUrl() {
         return imageUrl;
     }

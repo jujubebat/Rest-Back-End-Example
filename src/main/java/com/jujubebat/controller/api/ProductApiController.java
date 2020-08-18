@@ -4,6 +4,7 @@ import com.jujubebat.dto.ProductDetailResponseDto;
 import com.jujubebat.dto.ProductResponseDto;
 import com.jujubebat.model.Product;
 import com.jujubebat.model.ProductDetail;
+import com.jujubebat.model.ProductImage;
 import com.jujubebat.service.ProductDetailService;
 import com.jujubebat.service.ProductService;
 import org.modelmapper.ModelMapper;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class ProductApiController {
 
     private final ProductService productService;
     private final ProductDetailService productDetailService;
+    private EntityManager em;
 
     @Autowired
     public  ProductApiController(ProductService productService, ProductDetailService productDetailService){
@@ -64,6 +68,7 @@ public class ProductApiController {
         if(productList.isEmpty()) return productResponseDtoList;
 
         for(Product product : productList){
+
             ProductResponseDto productResponseDto = new ProductResponseDto();
             productResponseDto.setPublicAuctionNum(product.getPublicAuctionNum());
             productResponseDto.setUseName(product.getUseName());
@@ -120,4 +125,17 @@ public class ProductApiController {
 
         return productDetailResponseDto;
     }
+
+    /*
+    @GetMapping(path = "/{publicAuctionNum}") //상세 조회로 만들기
+    public ProductDetailResponseDto getProuct(@PathVariable(name = "publicAuctionNum") Long publicAuctionNum){
+
+        ProductDetail productDetail = productDetailService.getProductDetail(publicAuctionNum);
+
+        ProductDetailResponseDto productDetailResponseDto = new ProductDetailResponseDto();
+
+        productDetailResponseDto.setPublicAuctionNum(productDetail.getPBCT_NO());
+
+        return productDetailResponseDto;
+    }*/
 }

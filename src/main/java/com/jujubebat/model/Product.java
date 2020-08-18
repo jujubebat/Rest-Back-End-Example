@@ -11,11 +11,14 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@ToString(exclude = {"calendar"})
+@ToString(exclude = {"product"})
 public class Product {
 
-    @OneToMany(mappedBy = "product")
-    private List<Calendar> calendar = new ArrayList<>();
+   // @OneToMany(mappedBy = "product")
+    //private List<ProductImage> productImages = new ArrayList<>();
+
+    //@OneToMany(mappedBy = "product")
+    //private List<Calendar> calendar = new ArrayList<>();
 
     @Id
     private Long publicAuctionNum; // 공매 번호
@@ -55,6 +58,5 @@ public class Product {
     private String businessType; // 업종
     private String eventName; // 종목명
     private String membershipName; // 회원권명
-
 
 }
