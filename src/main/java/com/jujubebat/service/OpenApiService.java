@@ -146,8 +146,8 @@ public class OpenApiService {
                 Source input = new DOMSource(doc);
                 transformer.transform(input, output);*/
 
-                System.out.println("#######공매물건목록조회#######");
-                System.out.println(callBackURL);
+                //System.out.println("#######공매물건목록조회#######");
+                //System.out.println(callBackURL);
 
                 if (nList.getLength() == 0) break;
 
@@ -196,7 +196,7 @@ public class OpenApiService {
                         product.setEventName(getTagValue("ITM_NM", eElement));
                         product.setMembershipName(getTagValue("MMB_RGT_NM", eElement));
 
-                        System.out.println(getTagValue("BID_MTD_NM", eElement));
+                        //System.out.println(getTagValue("BID_MTD_NM", eElement));
 
                         productRepository.save(product);
 
@@ -242,8 +242,8 @@ public class OpenApiService {
         Source input = new DOMSource(doc);
         transformer.transform(input, output);*/
 
-        System.out.println("    #######상세조회#######");
-        System.out.println("    " + callBackURL);
+        //System.out.println("    #######상세조회#######");
+        //System.out.println("    " + callBackURL);
 
         if (nNode == null) return null;
         Element eElement = (Element) nNode;
@@ -300,8 +300,8 @@ public class OpenApiService {
 
         String callBackURL = baseUri + "/KamcoPblsalThingInquireSvc/getKamcoPlnmPbctBidDateInfoDetail?serviceKey=" + serviceKey + "&PLNM_NO=" + PLNM_NO + "&PBCT_NO=" + PBCT_NO + "&pageNo=" + pageNo + "&numOfRows=100";
 
-        System.out.println("    #######날짜조회#######");
-        System.out.println("    " + callBackURL);
+        //System.out.println("    #######날짜조회#######");
+        //System.out.println("    " + callBackURL);
 
         DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();

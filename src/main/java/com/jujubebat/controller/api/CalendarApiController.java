@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class CalendarApiController {
     private final UserRepository userRepository;
     private final CalendarService calendarService;
     private final ProductService productService;
+    private EntityManager entityManager;
 
     @Autowired
     public CalendarApiController(UserRepository userRepository, CalendarService calendarService, ProductService productService){
@@ -53,7 +56,9 @@ public class CalendarApiController {
 
             //calendarResponseDto.setPublicAuctionNum(calendar.getProduct().getPublicAuctionNum());
 
-            Product product = productService.getProduct(calendar.getProduct().getPublicAuctionNum());
+
+            Product product = calendar.getProduct();
+                    // productService.getProduct(calendar.getProduct().getPublicAuctionNum());
 
             System.out.println(product.getPublicAuctionNum());
             System.out.println(product.getObjectName());
