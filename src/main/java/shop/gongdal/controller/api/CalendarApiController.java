@@ -64,7 +64,7 @@ public class CalendarApiController {
                                @RequestBody CalendarRequest calendarRequest) {
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
         calendarService.addCalendars(currentUser.getId(), calendarRequest.getProductId());
-        return new ResponseEntity<Void>(HttpStatus.CREATED); // 데이터 입력 올바르게 되었으면 true 리턴하도록 수정.
+        return new ResponseEntity<Void>(HttpStatus.OK); // 데이터 입력 올바르게 되었으면 true 리턴하도록 수정.
     }
 
     @DeleteMapping(path = "/{productId}")
@@ -74,7 +74,7 @@ public class CalendarApiController {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
         calendarService.removeCalendar(currentUser.getId(), productId);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.OK);
 
     }
 

@@ -130,7 +130,6 @@ public class ProductApiController {
 
     @GetMapping(path = "/{productId}") //상세 조회로 만들기
     public Product getProuct(@PathVariable(name = "productId") Long productId){
-        System.out.println(productId);
         return productService.getProductWithDetailDate(productId);
     }
 }
