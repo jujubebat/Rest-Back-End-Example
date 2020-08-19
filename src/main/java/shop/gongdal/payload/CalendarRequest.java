@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class CalendarRequest {
 
-    private Long publicAuctionNum;
+    private Long productId;
 
 }

@@ -57,25 +57,26 @@ public class CalendarApiController {
         calendarResponseDto.setProductList(productList);
         return calendarResponseDto;
     }
-/*
+
     @PostMapping
     @PreAuthorize("hasRole('USER')")
     public Object addCalendars(@CurrentUser UserPrincipal userPrincipal,
-                               @RequestBody CalendarRequest calendarRequestDto) {
+                               @RequestBody CalendarRequest calendarRequest) {
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
-        calendarService.addCalendars(currentUser.getId(), calendarRequestDto.getPublicAuctionNum());
+        calendarService.addCalendars(currentUser.getId(), calendarRequest.getProductId());
         return new ResponseEntity<Void>(HttpStatus.CREATED); // 데이터 입력 올바르게 되었으면 true 리턴하도록 수정.
     }
 
-    @DeleteMapping(path = "/{publicAuctionNum}")
+    @DeleteMapping(path = "/{productId}")
     @PreAuthorize("hasRole('USER')")
     public Object removeCalendars(@CurrentUser UserPrincipal userPrincipal,
-                                  @PathVariable(name = "publicAuctionNum") Long publicAuctionNum) {
+                                  @PathVariable(name = "productId") Long productId) {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
-        calendarService.removeCalendar(currentUser.getId(), publicAuctionNum);
+        calendarService.removeCalendar(currentUser.getId(), productId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 
     }
-*/
+
 }
+

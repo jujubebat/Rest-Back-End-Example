@@ -31,25 +31,21 @@ public class CalendarService {
     public List<Calendar> getCalendarsByUserId(Long userId) {
         return calendarRepository.findByUserId(userId);
     }
-/*
-    public void addCalendars(Long userId, Long publicAuctionNum) {
+
+    public void addCalendars(Long userId, Long productId) {
         Calendar calendar = new Calendar();
 
         Optional<User> user = userRepository.findById(userId);
         calendar.setUser(user.get());
 
-        Optional<Product> product = productRepository.findByPublicAuctionNum(publicAuctionNum);
+        Optional<Product> product = productRepository.findById(productId);
         calendar.setProduct(product.get());
-
-        System.out.println(calendar);
 
         calendarRepository.save(calendar);
     }
 
     public boolean removeCalendar(Long userId, Long productId) {
-        Optional<Product> product = productRepository.findByPublicAuctionNum(productId);
-        return calendarRepository.deleteByUserIdAndProductId(userId, product.get().getId());
+        return calendarRepository.deleteByUserIdAndProductId(userId, productId);
     }
 
-*/
 }
