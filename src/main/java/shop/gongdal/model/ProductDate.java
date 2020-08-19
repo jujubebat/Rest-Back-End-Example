@@ -1,5 +1,6 @@
 package shop.gongdal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Entity
 public class ProductDate {
 
+    @JsonIgnore // 무한 루프 방지를 위해 사용
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

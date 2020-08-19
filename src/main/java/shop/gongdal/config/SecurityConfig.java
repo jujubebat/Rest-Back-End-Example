@@ -1,6 +1,5 @@
 package shop.gongdal.config;
 
-import shop.gongdal.security.*;
 import shop.gongdal.security.oauth2.CustomOAuth2UserService;
 import shop.gongdal.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import shop.gongdal.security.oauth2.OAuth2AuthenticationFailureHandler;

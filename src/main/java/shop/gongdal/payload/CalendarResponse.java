@@ -1,4 +1,4 @@
-package shop.gongdal.dto;
+package shop.gongdal.payload;
 
 import shop.gongdal.model.Product;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CalendarResponseDto {
+public class CalendarResponse {
 
     private Long userId;
     private List<Product> productList;

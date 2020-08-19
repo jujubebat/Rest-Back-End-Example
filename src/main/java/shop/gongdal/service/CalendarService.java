@@ -31,7 +31,7 @@ public class CalendarService {
     public List<Calendar> getCalendarsByUserId(Long userId) {
         return calendarRepository.findByUserId(userId);
     }
-
+/*
     public void addCalendars(Long userId, Long publicAuctionNum) {
         Calendar calendar = new Calendar();
 
@@ -41,6 +41,8 @@ public class CalendarService {
         Optional<Product> product = productRepository.findByPublicAuctionNum(publicAuctionNum);
         calendar.setProduct(product.get());
 
+        System.out.println(calendar);
+
         calendarRepository.save(calendar);
     }
 
@@ -49,5 +51,5 @@ public class CalendarService {
         return calendarRepository.deleteByUserIdAndProductId(userId, product.get().getId());
     }
 
-
+*/
 }

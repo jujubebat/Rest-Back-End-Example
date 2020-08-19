@@ -54,26 +54,20 @@ public class ProductService {
         return product.get();
     }
 
-    public Product getProductByPublicAuctionNum(Long publicAuctionNum) {
-        Optional<Product> product = productRepository.findByPublicAuctionNum(publicAuctionNum);
-        if (!product.isPresent()) return null;
-        return product.get();
-    }
 
     public List<Product> getProductsLikeObjectName(String ObjectName) {
         return productRepository.findByObjectNameLike("%" + ObjectName + "%");
     }
 
-    public Product getProductWithDetailDate(Long publicAuctionNum) {
-        Optional<Product> optionalProduct = productRepository.findByPublicAuctionNum(publicAuctionNum);
-
+    public Product getProductWithDetailDate(Long productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
         if (!optionalProduct.isPresent()) return null;
 
         Product product = optionalProduct.get();
 
-        Optional<ProductDetail> optionalProductDetail = productDetailRepository.findByPublicAuctionNum(publicAuctionNum);
+        Optional<ProductDetail> optionalProductDetail = productDetailRepository.findById(productId);
 
-        List<ProductDate> productDateList = productDateRepository.findByPublicAuctionNum(publicAuctionNum);
+        List<ProductDate> productDateList = productDateRepository.findByProduct(product);
 
         product.setProductDetail(optionalProductDetail.get());
         product.setProductDate(productDateList);

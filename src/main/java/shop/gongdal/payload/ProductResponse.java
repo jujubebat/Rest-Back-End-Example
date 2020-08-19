@@ -1,4 +1,4 @@
-package shop.gongdal.dto;
+package shop.gongdal.payload;
 
 import lombok.Data;
 
@@ -6,8 +6,9 @@ import javax.persistence.Lob;
 import java.util.List;
 
 @Data
-public class ProductResponseDto {
+public class ProductResponse {
 
+    private Long id;
     private Long publicAuctionNum; // 공매 번호
     private Long noticeNum; //공고 번호
     private Long publicAuctionConditionNum; // 공매 조건 번호

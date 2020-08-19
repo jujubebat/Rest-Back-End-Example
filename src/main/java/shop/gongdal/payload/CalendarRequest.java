@@ -1,11 +1,11 @@
-package shop.gongdal.dto;
+package shop.gongdal.payload;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CalendarRequestDto {
+public class CalendarRequest {
 
     private Long publicAuctionNum;
 

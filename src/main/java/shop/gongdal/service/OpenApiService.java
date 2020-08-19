@@ -196,8 +196,7 @@ public class OpenApiService {
                         product.setEventName(getTagValue("ITM_NM", eElement));
                         product.setMembershipName(getTagValue("MMB_RGT_NM", eElement));
 
-                        productRepository.save(product);
-
+                        Product savedProduct = productRepository.save(product);
 
                         NodeList imgeList = eElement.getElementsByTagName("CLTR_IMG_FILES").item(0).getChildNodes();
                         Element e = (Element) imgeList;
@@ -222,7 +221,7 @@ public class OpenApiService {
                         getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO);
                         //kamcoProductDetailInfo.put(key, getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO)); // 상세정보 map에 추가
 
-                        List<ProductDate> list = getKamcoPlnmPbctBidDateInfoDetail(PLNM_NO, PBCT_NO);
+                        List<ProductDate> list = getKamcoPlnmPbctBidDateInfoDetail(savedProduct, PLNM_NO, PBCT_NO);
                         for (ProductDate productDate : list) {
                             // kamcoProductDateInfo.put(key, productDate); // 상세 일정 정보 map에 추가
                         }
@@ -301,7 +300,7 @@ public class OpenApiService {
     }
 
     // 캠코공매공고 공매일정 상세조회
-    public List<ProductDate> getKamcoPlnmPbctBidDateInfoDetail(String PLNM_NO, String PBCT_NO) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public List<ProductDate> getKamcoPlnmPbctBidDateInfoDetail(Product product, String PLNM_NO, String PBCT_NO) throws ParserConfigurationException, IOException, SAXException, TransformerException {
 
         List<ProductDate> productDateList = new ArrayList<>();
 
@@ -336,6 +335,7 @@ public class OpenApiService {
                 Element eElement = (Element) nNode;
                 ProductDate productDate = new ProductDate();  // [빌터 패턴으로 객체 생성해보기]
 
+                productDate.setProduct(product);
                 productDate.setNoticeNum(Long.parseLong(PLNM_NO));
                 productDate.setPublicAuctionNum(Long.parseLong(PBCT_NO));
                 productDate.setPublicAuctionSequence(getTagValue("PBCT_SEQ", eElement));

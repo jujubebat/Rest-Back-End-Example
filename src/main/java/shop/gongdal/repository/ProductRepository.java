@@ -12,7 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Optional<Product> findById(Long id);
 
-    Optional<Product> findByPublicAuctionNum(Long publicAuctionNum);
+    Optional<Product> findByNoticeNumAndPublicAuctionNum(Long noticeNum, Long publicAuctionNum);
 
     Optional<Product> findByObjectManagementNum(String objectManagementNum);
 

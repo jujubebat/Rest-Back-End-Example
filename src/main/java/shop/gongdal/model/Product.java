@@ -12,17 +12,6 @@ import java.util.List;
 @Entity
 public class Product {
 
-    @JsonIgnore // 무한 루프 방지를 위해 사용
-    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
-    private List<Calendar> calendars = new ArrayList<>();
-
-    @OneToOne
-    @JoinColumn(name = "product_detail_id")
-    private ProductDetail productDetail;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
-    private List<ProductDate> productDate;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -65,4 +54,16 @@ public class Product {
     private String eventName; // 종목명
     private String membershipName; // 회원권명
 
+
+    @JsonIgnore // 무한 루프 방지를 위해 사용
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+    private List<Calendar> calendars = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "product_detail_id")
+    private ProductDetail productDetail;
+
+    //@JsonIgnore // 무한 루프 방지를 위해 사용
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+    private List<ProductDate> productDate;
 }
