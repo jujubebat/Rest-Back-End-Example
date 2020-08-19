@@ -18,6 +18,7 @@ import java.util.List;
 })
 public class User {
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Calendar> calendars = new ArrayList<>();
 
