@@ -1,5 +1,7 @@
 package shop.gongdal.service;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import shop.gongdal.model.Calendar;
 import shop.gongdal.model.Product;
 import shop.gongdal.model.User;
@@ -44,8 +46,9 @@ public class CalendarService {
         calendarRepository.save(calendar);
     }
 
-    public boolean removeCalendar(Long userId, Long productId) {
-        return calendarRepository.deleteByUserIdAndProductId(userId, productId);
+    public ResponseEntity removeCalendar(Long userId, Long productId) {
+        calendarRepository.deleteByUserIdAndProductId(userId, productId);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
 }
