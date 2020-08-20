@@ -10,14 +10,12 @@ import shop.gongdal.model.Product;
 import shop.gongdal.model.User;
 import shop.gongdal.payload.CalendarRequest;
 import shop.gongdal.payload.CalendarResponse;
-import shop.gongdal.repository.UserRepository;
+import shop.gongdal.repository.user.UserRepository;
 import shop.gongdal.security.CurrentUser;
 import shop.gongdal.security.UserPrincipal;
 import shop.gongdal.service.CalendarService;
 import shop.gongdal.service.ProductService;
 
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,9 +58,10 @@ public class CalendarApiController {
 
 
     @GetMapping(path = "deteTest/{productId}")
-    public void deleteTest(@PathVariable(name = "productId") Long productId){
+    public boolean deleteTest(@PathVariable(name = "productId") Long productId){
 
         calendarService.removeCalendar(Long.parseLong("1"), productId);
+        return true;
     }
 
     @GetMapping
@@ -87,22 +86,22 @@ public class CalendarApiController {
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public Object addCalendars(@CurrentUser UserPrincipal userPrincipal,
+    public boolean addCalendars(@CurrentUser UserPrincipal userPrincipal,
                                @RequestBody CalendarRequest calendarRequest) {
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
         calendarService.addCalendars(currentUser.getId(), calendarRequest.getProductId());
-        return new ResponseEntity<Void>(HttpStatus.OK); // 데이터 입력 올바르게 되었으면 true 리턴하도록 수정.
+        return true;
     }
 
     @DeleteMapping(path = "/{productId}")
     @PreAuthorize("hasRole('USER')")
-    public Object removeCalendars(@CurrentUser UserPrincipal userPrincipal,
+    public boolean removeCalendars(@CurrentUser UserPrincipal userPrincipal,
                                   @PathVariable(name = "productId") Long productId) {
 
         User currentUser = userRepository.findById(userPrincipal.getId()).get();
         calendarService.removeCalendar(currentUser.getId(), productId);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-
+        //return new ResponseEntity<Void>(HttpStatus.OK);
+        return true;
     }
 
 }

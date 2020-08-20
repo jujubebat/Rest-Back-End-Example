@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -33,10 +34,10 @@ public class Product {
     @Lob
     private String bidMethod; // 입찰 방식명
     private String minimumBidPrice; // 최저 입찰가
-    private String appraisedPrice; // 감정가
+    private Long appraisedPrice; // 감정가
     private String minimumBidPriceRate; // 최저 입찰가율
-    private String bidBeginDateTime; // 입찰 시작 일시
-    private String bidCloseDateTime; // 입찰 마감 일시
+    private Long bidBeginDateTime; // 입찰 시작 일시
+    private Long bidCloseDateTime; // 입찰 마감 일시
     private String objectCondition; // 물건 상태
     private String failBidCount; // 유찰횟수
     private String onbidViews; // 온비드 게시글 조회수
@@ -44,10 +45,10 @@ public class Product {
     private String productDetailInfo; // 물건 상세 정보
     private String manufacturer; // 제조사
     private String model; // 모델
-    private String yearAndMonth; // 연월식
+    private Long yearAndMonth; // 연월식
     private String transmission; // 변속기
-    private String displacement; // 배기량
-    private String distanceDriven; // 주행거리
+    private Long displacement; // 배기량
+    private Long distanceDriven; // 주행거리
     private String fuelType; // 연료 종류
     private String corporationName; // 법인명
     private String businessType; // 업종

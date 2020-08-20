@@ -2,7 +2,7 @@ package shop.gongdal.security;
 
 import shop.gongdal.exception.ResourceNotFoundException;
 import shop.gongdal.model.User;
-import shop.gongdal.repository.UserRepository;
+import shop.gongdal.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

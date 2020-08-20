@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import shop.gongdal.model.Calendar;
 import shop.gongdal.model.Product;
 import shop.gongdal.model.User;
-import shop.gongdal.repository.CalendarRepository;
-import shop.gongdal.repository.ProductRepository;
-import shop.gongdal.repository.UserRepository;
+import shop.gongdal.repository.calendar.CalendarRepository;
+import shop.gongdal.repository.product.ProductRepository;
+import shop.gongdal.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

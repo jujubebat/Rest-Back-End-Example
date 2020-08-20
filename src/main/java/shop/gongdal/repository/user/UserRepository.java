@@ -1,4 +1,4 @@
-package shop.gongdal.repository;
+package shop.gongdal.repository.user;
 
 import shop.gongdal.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -8,7 +8,7 @@ import shop.gongdal.payload.ApiResponse;
 import shop.gongdal.payload.AuthResponse;
 import shop.gongdal.payload.LoginRequest;
 import shop.gongdal.payload.SignUpRequest;
-import shop.gongdal.repository.UserRepository;
+import shop.gongdal.repository.user.UserRepository;
 import shop.gongdal.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

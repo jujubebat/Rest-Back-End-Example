@@ -1,4 +1,4 @@
-package shop.gongdal.repository;
+package shop.gongdal.repository.productDate;
 
 import shop.gongdal.model.Product;
 import shop.gongdal.model.ProductDate;
@@ -9,8 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProductDateRepository extends JpaRepository<ProductDate, Long> {
-
-    List<ProductDate> findByPublicAuctionNum(Long publicAuctionNum);
 
     List<ProductDate> findByProduct(Product product);
 

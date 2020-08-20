@@ -1,7 +1,7 @@
 package shop.gongdal.service;
 
 import shop.gongdal.model.ProductImage;
-import shop.gongdal.repository.ProductImageRepository;
+import shop.gongdal.repository.productImage.ProductImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

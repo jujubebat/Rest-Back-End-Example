@@ -3,6 +3,7 @@ package shop.gongdal.payload;
 import lombok.Data;
 
 import javax.persistence.Lob;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -34,10 +35,10 @@ public class ProductResponse {
     private String productDetailInfo; // =물건 상세 정보
     private String manufacturer; // =제조사
     private String model; // =모델
-    private String yearAndMonth; // =연월식
+    private Long yearAndMonth; // =연월식
     private String transmission; // =변속기
-    private String displacement; // =배기량
-    private String distanceDriven; // =주행거리
+    private Long displacement; // =배기량
+    private Long distanceDriven; // =주행거리
     private String fuelType; // =연료 종류
     private String corporationName; // 법인명
     private String businessType; // 업종

@@ -3,12 +3,11 @@ package shop.gongdal.service;
 import shop.gongdal.model.Product;
 import shop.gongdal.model.ProductDate;
 import shop.gongdal.model.ProductDetail;
-import shop.gongdal.repository.ProductDateRepository;
-import shop.gongdal.repository.ProductDetailRepository;
-import shop.gongdal.repository.ProductRepository;
+import shop.gongdal.payload.ProductRequest;
+import shop.gongdal.repository.productDate.ProductDateRepository;
+import shop.gongdal.repository.productDetail.ProductDetailRepository;
+import shop.gongdal.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +19,6 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductDetailRepository productDetailRepository;
     private final ProductDateRepository productDateRepository;
-    private final int pageSize = 10;
 
     @Autowired
     public ProductService(ProductRepository productRepository,
@@ -31,38 +29,44 @@ public class ProductService {
         this.productDateRepository = productDateRepository;
     }
 
-    public Product getProduct(Long id) {
-        Optional<Product> product = productRepository.findById(id);
-        if (!product.isPresent()) return null;
-        return product.get();
-    }
 
+    public List<Product> getProductByCondition(ProductRequest productRequest){
 
-    public Page<Product> getProducts(int pageNum) {
-        return productRepository.findAll(PageRequest.of(pageNum, pageSize));
-    }
+        String objectManagementNum = productRequest.getObjectManagementNum();
+        String objectName = productRequest.getObjectName();
+        Long appraisedPriceStart =productRequest.getAppraisedPriceStart();
+        Long appraisedPriceEnd = productRequest.getAppraisedPriceEnd();
+        Long bidBeginDateTime = productRequest.getBidBeginDateTime();
+        Long bidCloseDateTime = productRequest.getBidCloseDateTime();
+        String manufacturer = productRequest.getManufacturer();
+        String model = productRequest.getModel();
+        String transmission = productRequest.getTransmission();
+        String fuelType = productRequest.getFuelType();
+        Long yearAndMonthStart = productRequest.getYearAndMonthStart();
+        Long yearAndMonthEnd = productRequest.getYearAndMonthEnd();
+        Long displacementStart = productRequest.getDisplacementStart();
+        Long displacementEnd = productRequest.getDisplacementEnd();
+        Long distanceDrivenStart = productRequest.getDistanceDrivenStart();
+        Long distanceDrivenEnd = productRequest.getDistanceDrivenEnd();
 
-    public Product getProductByObjectManagementNum(String objectManagementNum) {
+        List<Product> productList = productRepository.findByCarCondition(objectManagementNum,
+                objectName,
+                appraisedPriceStart,
+                appraisedPriceEnd,
+                bidBeginDateTime,
+                bidCloseDateTime,
+                manufacturer,
+                model,
+                transmission,
+                fuelType,
+                yearAndMonthStart,
+                yearAndMonthEnd,
+                displacementStart,
+                displacementEnd,
+                distanceDrivenStart,
+                distanceDrivenEnd);
 
-        System.out.println("dfs" + objectManagementNum);
-
-        Optional<Product> optionalProduct = productRepository.findByObjectManagementNum(objectManagementNum);
-        if (!optionalProduct.isPresent()) return null;
-
-        Product product = optionalProduct.get();
-
-        return product;
-    }
-
-    public Product getProductById(Long Id) {
-        Optional<Product> product = productRepository.findById(Id);
-        if (!product.isPresent()) return null;
-        return product.get();
-    }
-
-
-    public List<Product> getProductsLikeObjectName(String ObjectName) {
-        return productRepository.findByObjectNameLike("%" + ObjectName + "%");
+        return productList;
     }
 
     public Product getProductWithDetailDate(Long productId) {
@@ -70,12 +74,7 @@ public class ProductService {
         if (!optionalProduct.isPresent()) return null;
 
         Product product = optionalProduct.get();
-
-        System.out.println(product.getId());
-
-
-        Optional<ProductDetail> optionalProductDetail = productDetailRepository.findById(productId);
-
+        Optional<ProductDetail> optionalProductDetail = productDetailRepository.findByProduct(product);
         List<ProductDate> productDateList = productDateRepository.findByProduct(product);
 
         product.setProductDetail(optionalProductDetail.get());
@@ -83,4 +82,5 @@ public class ProductService {
 
         return product;
     }
+
 }

@@ -3,7 +3,7 @@ package shop.gongdal.security.oauth2;
 import shop.gongdal.exception.OAuth2AuthenticationProcessingException;
 import shop.gongdal.model.AuthProvider;
 import shop.gongdal.model.User;
-import shop.gongdal.repository.UserRepository;
+import shop.gongdal.repository.user.UserRepository;
 import shop.gongdal.security.UserPrincipal;
 import shop.gongdal.security.oauth2.user.OAuth2UserInfo;
 import shop.gongdal.security.oauth2.user.OAuth2UserInfoFactory;

@@ -7,10 +7,10 @@ import shop.gongdal.model.Product;
 import shop.gongdal.model.ProductDate;
 import shop.gongdal.model.ProductDetail;
 import shop.gongdal.model.ProductImage;
-import shop.gongdal.repository.ProductDateRepository;
-import shop.gongdal.repository.ProductDetailRepository;
-import shop.gongdal.repository.ProductImageRepository;
-import shop.gongdal.repository.ProductRepository;
+import shop.gongdal.repository.productDate.ProductDateRepository;
+import shop.gongdal.repository.productDetail.ProductDetailRepository;
+import shop.gongdal.repository.productImage.ProductImageRepository;
+import shop.gongdal.repository.product.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,7 +119,8 @@ public class OpenApiService {
 
         String[] DPSL_MTD_CD = {"0001", "0002"};
 
-        for (int i = 2; i >= 0; i--) {
+        for (int i = 1; i >= 0; i--) {
+
             while (true) {
                 pageNo++;
                 ProductfileNum++;
@@ -135,7 +136,6 @@ public class OpenApiService {
                 Document doc = dBuilder.parse(callBackURL);
 
                 NodeList nList = doc.getElementsByTagName("item");
-
 
                 // xml 파일 저장
                 /*
@@ -155,9 +155,11 @@ public class OpenApiService {
 
                     Node nNode = nList.item(j);
 
-
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
+                        System.out.println("뚜뚜");
+                        if(getTagValue("ENDPC", eElement) == null) continue;
+                        System.out.println(getTagValue("ENDPC", eElement));
 
                         Product product = new Product();  // [빌터 패턴으로 객체 생성해보기]
                         product.setPublicAuctionNum(Long.parseLong(getTagValue("PBCT_NO", eElement)));
@@ -176,55 +178,58 @@ public class OpenApiService {
                         product.setDisposalMethodCodeName(getTagValue("DPSL_MTD_NM", eElement));
                         product.setBidMethod(getTagValue("BID_MTD_NM", eElement));
                         product.setMinimumBidPrice(getTagValue("MIN_BID_PRC", eElement));
-                        product.setAppraisedPrice(getTagValue("APSL_ASES_AVG_AMT", eElement));
+                        product.setAppraisedPrice(Long.parseLong(getTagValue("APSL_ASES_AVG_AMT", eElement)));
                         product.setMinimumBidPriceRate(getTagValue("FEE_RATE", eElement));
-                        product.setBidBeginDateTime(getTagValue("PBCT_BEGN_DTM", eElement));
-                        product.setBidCloseDateTime(getTagValue("PBCT_CLS_DTM", eElement));
+                        product.setBidBeginDateTime(Long.parseLong(getTagValue("PBCT_BEGN_DTM", eElement)));
+                        product.setBidCloseDateTime(Long.parseLong(getTagValue("PBCT_CLS_DTM", eElement)));
                         product.setObjectCondition(getTagValue("PBCT_CLTR_STAT_NM", eElement));
                         product.setFailBidCount(getTagValue("USCBD_CNT", eElement));
                         product.setOnbidViews(getTagValue("IQRY_CNT", eElement));
                         product.setProductDetailInfo(getTagValue("GOODS_NM", eElement));
                         product.setManufacturer(getTagValue("MANF", eElement));
                         product.setModel(getTagValue("MDL", eElement));
-                        product.setYearAndMonth(getTagValue("NRGT", eElement));
+                        product.setYearAndMonth(Long.parseLong(getTagValue("NRGT", eElement)));
                         product.setTransmission(getTagValue("GRBX", eElement));
-                        product.setDisplacement(getTagValue("ENDPC", eElement));
-                        product.setDistanceDriven(getTagValue("VHCL_MLGE", eElement));
+                        product.setDisplacement(Long.parseLong(getTagValue("ENDPC", eElement).replaceAll("[^0-9]","")));
+                        product.setDistanceDriven(Long.parseLong(getTagValue("VHCL_MLGE", eElement).replaceAll("[^0-9]","")));
                         product.setFuelType(getTagValue("FUEL", eElement));
                         product.setCorporationName(getTagValue("SCRT_NM", eElement));
                         product.setBusinessType(getTagValue("TPBZ", eElement));
                         product.setEventName(getTagValue("ITM_NM", eElement));
                         product.setMembershipName(getTagValue("MMB_RGT_NM", eElement));
 
-                        Product savedProduct = productRepository.save(product);
+                       if(product.getFuelType() != null){
+                            Product savedProduct = productRepository.save(product);
 
-                        NodeList imgeList = eElement.getElementsByTagName("CLTR_IMG_FILES").item(0).getChildNodes();
-                        Element e = (Element) imgeList;
+                            NodeList imgeList = eElement.getElementsByTagName("CLTR_IMG_FILES").item(0).getChildNodes();
+                            Element e = (Element) imgeList;
 
-                        for (int k = 0; k < e.getElementsByTagName("CLTR_IMG_FILE").getLength(); k++) {
-                            System.out.println(e.getElementsByTagName("CLTR_IMG_FILE").item(k).getChildNodes().item(0).getNodeValue());
-                            ProductImage productImage = new ProductImage();
-                            productImage.setProduct(product);
-                            productImage.setImgUrl(e.getElementsByTagName("CLTR_IMG_FILE").item(k).getChildNodes().item(0).getNodeValue());
-                            productImageRepository.save(productImage);
+                            for (int k = 0; k < e.getElementsByTagName("CLTR_IMG_FILE").getLength(); k++) {
+                                System.out.println(e.getElementsByTagName("CLTR_IMG_FILE").item(k).getChildNodes().item(0).getNodeValue());
+                                ProductImage productImage = new ProductImage();
+                                productImage.setProduct(product);
+                                productImage.setImgUrl(e.getElementsByTagName("CLTR_IMG_FILE").item(k).getChildNodes().item(0).getNodeValue());
+                                productImageRepository.save(productImage);
+                            }
+
+                            System.out.println("##############################################");
+
+
+                            String PLNM_NO = getTagValue("PLNM_NO", eElement);
+                            String PBCT_NO = getTagValue("PBCT_NO", eElement);
+
+                            // Pair key = new Pair<Long, Long>(Long.parseLong(PLNM_NO), Long.parseLong(PBCT_NO));
+
+                            //kamcoProductInfo.put(key, product); // 물건 정보 map에 추가
+                            getKamcoPlnmPbctBasicInfoDetail(product, PLNM_NO, PBCT_NO);
+                            //kamcoProductDetailInfo.put(key, getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO)); // 상세정보 map에 추가
+
+                            List<ProductDate> list = getKamcoPlnmPbctBidDateInfoDetail(savedProduct, PLNM_NO, PBCT_NO);
+                            for (ProductDate productDate : list) {
+                                // kamcoProductDateInfo.put(key, productDate); // 상세 일정 정보 map에 추가
+                            }
                         }
 
-                        System.out.println("##############################################");
-
-
-                        String PLNM_NO = getTagValue("PLNM_NO", eElement);
-                        String PBCT_NO = getTagValue("PBCT_NO", eElement);
-
-                        // Pair key = new Pair<Long, Long>(Long.parseLong(PLNM_NO), Long.parseLong(PBCT_NO));
-
-                        //kamcoProductInfo.put(key, product); // 물건 정보 map에 추가
-                        getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO);
-                        //kamcoProductDetailInfo.put(key, getKamcoPlnmPbctBasicInfoDetail(PLNM_NO, PBCT_NO)); // 상세정보 map에 추가
-
-                        List<ProductDate> list = getKamcoPlnmPbctBidDateInfoDetail(savedProduct, PLNM_NO, PBCT_NO);
-                        for (ProductDate productDate : list) {
-                            // kamcoProductDateInfo.put(key, productDate); // 상세 일정 정보 map에 추가
-                        }
                     }
                 }
             }
@@ -238,7 +243,7 @@ public class OpenApiService {
     }
 
     // 캠코공매공고 기본정보 상세조회
-    public ProductDetail getKamcoPlnmPbctBasicInfoDetail(String PLNM_NO, String PBCT_NO) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public ProductDetail getKamcoPlnmPbctBasicInfoDetail(Product product, String PLNM_NO, String PBCT_NO) throws ParserConfigurationException, IOException, SAXException, TransformerException {
 
         String callBackURL = baseUri + "/KamcoPblsalThingInquireSvc/getKamcoPlnmPbctBasicInfoDetail?serviceKey=" + serviceKey + "&PLNM_NO=" + PLNM_NO + "&PBCT_NO=" + PBCT_NO;
         DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
@@ -280,7 +285,6 @@ public class OpenApiService {
         productDetail.setOrganizationNoticeNum(getTagValue("ORG_PLNM_NO", eElement));
         productDetail.setRelateNoticeNum(getTagValue("RLTN_PLNM_NO", eElement));
         productDetail.setRelateNoticeName(getTagValue("RLTN_PLNM_TITL", eElement));
-
         productDetail.setBidMethodType(getTagValue("BID_MTD_NM", eElement));
         productDetail.setDisposeType(getTagValue("DPSL_MTD_NM", eElement));
         productDetail.setCompetitionType(getTagValue("CPTN_MTD_NM", eElement));
@@ -293,6 +297,7 @@ public class OpenApiService {
         productDetail.setBidDateInfosTotalCount(getTagValue("bidDateInfosTotalCount", eElement));
         productDetail.setFilesTotalCount(getTagValue("filesTotalCount", eElement));
 
+        productDetail.setProduct(product);
 
         productDetailRepository.save(productDetail);
 

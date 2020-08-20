@@ -1,4 +1,4 @@
-package shop.gongdal.repository;
+package shop.gongdal.repository.calendar;
 
 import shop.gongdal.model.Calendar;
 import org.springframework.data.jpa.repository.JpaRepository;

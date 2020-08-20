@@ -1,7 +1,7 @@
 package shop.gongdal.service;
 
 import shop.gongdal.model.ProductDetail;
-import shop.gongdal.repository.ProductDetailRepository;
+import shop.gongdal.repository.productDetail.ProductDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,8 @@
+shop\gongdal\service\OpenApiService.class
+shop\gongdal\model\QCalendar.class
+shop\gongdal\model\QUser.class
+shop\gongdal\model\QProductDetail.class
+shop\gongdal\model\QProductDate.class
+shop\gongdal\model\QProduct.class
+shop\gongdal\model\QProductImage.class
+shop\gongdal\payload\ProductRequest.class

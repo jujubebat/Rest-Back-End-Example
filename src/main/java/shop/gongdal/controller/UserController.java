@@ -2,7 +2,7 @@ package shop.gongdal.controller;
 
 import shop.gongdal.exception.ResourceNotFoundException;
 import shop.gongdal.model.User;
-import shop.gongdal.repository.UserRepository;
+import shop.gongdal.repository.user.UserRepository;
 import shop.gongdal.security.CurrentUser;
 import shop.gongdal.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
