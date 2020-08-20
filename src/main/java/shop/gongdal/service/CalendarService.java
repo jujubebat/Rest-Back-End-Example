@@ -35,6 +35,10 @@ public class CalendarService {
     }
 
     public void addCalendars(Long userId, Long productId) {
+        System.out.println(userId);
+        System.out.println(productId);
+
+
         Calendar calendar = new Calendar();
 
         Optional<User> user = userRepository.findById(userId);

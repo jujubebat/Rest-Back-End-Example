@@ -1,6 +1,5 @@
 package shop.gongdal.controller.api;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import shop.gongdal.model.Product;
@@ -25,53 +24,45 @@ import java.util.Optional;
 public class ProductApiController {
 
     private final ProductService productService;
-    private final ProductDetailService productDetailService;
     private final ProductImageService productImageService;
 
-    private final UserRepository userRepository;
-    private final ProductRepository productRepository;
-    private final CalendarRepository calendarRepository;
 
     @Autowired
-    public  ProductApiController(ProductService productService,
-                                 ProductDetailService productDetailService,
-                                 ProductImageService productImageService,
-
-                                 UserRepository userRepository,
-                                 ProductRepository productRepository,
-                                 CalendarRepository calendarRepository){
+    public ProductApiController(ProductService productService,
+                                ProductImageService productImageService) {
         this.productService = productService;
-        this.productDetailService = productDetailService;
         this.productImageService = productImageService;
-
-        this.userRepository = userRepository;
-        this.productRepository = productRepository;
-        this.calendarRepository = calendarRepository;
     }
 
     @GetMapping
     public List<ProductResponse> getProductsByOption(@RequestParam(defaultValue = "") String searchType,
-                                                     @RequestParam(defaultValue = "") String keyword){
+                                                     @RequestParam(defaultValue = "") String keyword) {
+
+        System.out.println(searchType);
+        System.out.println(keyword);
+
+
         List<Product> productList = new ArrayList<>();
 
-        System.out.println("haha " + searchType + " " + keyword);
+        if (searchType.equals("objectName")) {
+            System.out.println("objectName");
 
-        if(searchType.equals("objectName")){
+            System.out.println(keyword);
             productList = productService.getProductsLikeObjectName(keyword);
-            System.out.println("objectName : " + searchType + " " + keyword);
+        } else if (searchType.equals("objectManagementNum")) {
+            System.out.println("objectManagementNum");
 
-        }else if(searchType.equals("objectManagementNum")){
+            System.out.println(keyword);
             productList.add(productService.getProductByObjectManagementNum(keyword));
-            System.out.println("objectManagementNum : " + searchType + " " + keyword);
         }
 
         List<ProductResponse> productResponseDtoList = new ArrayList<>();
 
         System.out.println(productList.size());
 
-        if(productList.isEmpty()) return productResponseDtoList;
+        if (productList.isEmpty()) return productResponseDtoList;
 
-        for(Product product : productList){
+        for (Product product : productList) {
 
             ProductResponse productResponseDto = new ProductResponse();
             productResponseDto.setId(product.getId());
@@ -87,7 +78,6 @@ public class ProductApiController {
             productResponseDto.setObjectCondition(product.getObjectCondition());
             productResponseDto.setFailBidCount(product.getFailBidCount());
             productResponseDto.setOnbidViews(product.getOnbidViews());
-
             productResponseDto.setNoticeNum(product.getNoticeNum());
             productResponseDto.setPublicAuctionConditionNum(product.getPublicAuctionConditionNum());
             productResponseDto.setObjectRecordNum(product.getObjectRecordNum());
@@ -111,25 +101,21 @@ public class ProductApiController {
             productResponseDto.setEventName(product.getEventName());
             productResponseDto.setMembershipName(product.getMembershipName());
 
-            //ProductImgeResponseDto productImgeResponseDto = new ProductImgeResponseDto();
             List<String> urls = new ArrayList<>();
 
-            for(ProductImage productImage : productImageService.getProductImageByProductId(product.getId())){
+            for (ProductImage productImage : productImageService.getProductImageByProductId(product.getId())) {
                 urls.add(productImage.getImgUrl());
             }
 
-            //productImgeResponseDto.setImgUrls(urls);
             productResponseDto.setImages(urls);
-            //productResponseDto.setImages(productImgeResponseDto);
             productResponseDtoList.add(productResponseDto);
-
         }
 
         return productResponseDtoList;
     }
 
     @GetMapping(path = "/{productId}") //상세 조회로 만들기
-    public Product getProuct(@PathVariable(name = "productId") Long productId){
+    public Product getProuct(@PathVariable(name = "productId") Long productId) {
         return productService.getProductWithDetailDate(productId);
     }
 }

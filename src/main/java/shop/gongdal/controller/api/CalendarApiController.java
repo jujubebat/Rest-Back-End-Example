@@ -29,13 +29,40 @@ public class CalendarApiController {
     private final UserRepository userRepository;
     private final CalendarService calendarService;
     private final ProductService productService;
-    private EntityManager entityManager;
 
     @Autowired
     public CalendarApiController(UserRepository userRepository, CalendarService calendarService, ProductService productService){
         this.userRepository = userRepository;
         this.calendarService = calendarService;
         this.productService = productService;
+    }
+
+    @GetMapping(path = "/addTest/{productId}")
+    public void addTest(@PathVariable("productId") Long productId){
+        calendarService.addCalendars(Long.parseLong("1"), productId);
+    }
+
+    @GetMapping(path = "/getTest")
+    public CalendarResponse getTest(){
+        List<Calendar> calendarList = calendarService.getCalendarsByUserId(Long.parseLong("1"));
+
+        List<Product> productList = new ArrayList<>();
+
+        for(Calendar calendar : calendarList){
+            productList.add(calendar.getProduct());
+        }
+
+        CalendarResponse calendarResponseDto = new CalendarResponse();
+        calendarResponseDto.setUserId(Long.parseLong("1"));
+        calendarResponseDto.setProductList(productList);
+        return calendarResponseDto;
+    }
+
+
+    @GetMapping(path = "deteTest/{productId}")
+    public void deleteTest(@PathVariable(name = "productId") Long productId){
+
+        calendarService.removeCalendar(Long.parseLong("1"), productId);
     }
 
     @GetMapping

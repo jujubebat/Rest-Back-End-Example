@@ -42,10 +42,16 @@ public class ProductService {
         return productRepository.findAll(PageRequest.of(pageNum, pageSize));
     }
 
-    public Product getProductByObjectManagementNum(String ObjectManagementNum) {
-        Optional<Product> product = productRepository.findByObjectManagementNum(ObjectManagementNum);
-        if (!product.isPresent()) return null;
-        return product.get();
+    public Product getProductByObjectManagementNum(String objectManagementNum) {
+
+        System.out.println("dfs" + objectManagementNum);
+
+        Optional<Product> optionalProduct = productRepository.findByObjectManagementNum(objectManagementNum);
+        if (!optionalProduct.isPresent()) return null;
+
+        Product product = optionalProduct.get();
+
+        return product;
     }
 
     public Product getProductById(Long Id) {
@@ -64,6 +70,9 @@ public class ProductService {
         if (!optionalProduct.isPresent()) return null;
 
         Product product = optionalProduct.get();
+
+        System.out.println(product.getId());
+
 
         Optional<ProductDetail> optionalProductDetail = productDetailRepository.findById(productId);
 
