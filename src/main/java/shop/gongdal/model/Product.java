@@ -61,7 +61,6 @@ public class Product {
     private List<Calendar> calendars = new ArrayList<>();
 
     @OneToOne
-    @JoinColumn(name = "product_detail_id")
     private ProductDetail productDetail;
 
     //@JsonIgnore // 무한 루프 방지를 위해 사용

@@ -29,42 +29,30 @@ public class ProductService {
         this.productDateRepository = productDateRepository;
     }
 
+    public List<Product> getProduct(Long pageStartNum){
+        return productRepository.findAll(pageStartNum);
+    }
 
     public List<Product> getProductByCondition(ProductRequest productRequest){
 
-        String objectManagementNum = productRequest.getObjectManagementNum();
-        String objectName = productRequest.getObjectName();
-        Long appraisedPriceStart =productRequest.getAppraisedPriceStart();
-        Long appraisedPriceEnd = productRequest.getAppraisedPriceEnd();
-        Long bidBeginDateTime = productRequest.getBidBeginDateTime();
-        Long bidCloseDateTime = productRequest.getBidCloseDateTime();
-        String manufacturer = productRequest.getManufacturer();
-        String model = productRequest.getModel();
-        String transmission = productRequest.getTransmission();
-        String fuelType = productRequest.getFuelType();
-        Long yearAndMonthStart = productRequest.getYearAndMonthStart();
-        Long yearAndMonthEnd = productRequest.getYearAndMonthEnd();
-        Long displacementStart = productRequest.getDisplacementStart();
-        Long displacementEnd = productRequest.getDisplacementEnd();
-        Long distanceDrivenStart = productRequest.getDistanceDrivenStart();
-        Long distanceDrivenEnd = productRequest.getDistanceDrivenEnd();
-
-        List<Product> productList = productRepository.findByCarCondition(objectManagementNum,
-                objectName,
-                appraisedPriceStart,
-                appraisedPriceEnd,
-                bidBeginDateTime,
-                bidCloseDateTime,
-                manufacturer,
-                model,
-                transmission,
-                fuelType,
-                yearAndMonthStart,
-                yearAndMonthEnd,
-                displacementStart,
-                displacementEnd,
-                distanceDrivenStart,
-                distanceDrivenEnd);
+        List<Product> productList = productRepository.findByCarCondition(
+                productRequest.getPageStartNum(),
+                productRequest.getObjectManagementNum(),
+                productRequest.getObjectName(),
+                productRequest.getAppraisedPriceStart(),
+                productRequest.getAppraisedPriceEnd(),
+                productRequest.getBidBeginDateTime(),
+                productRequest.getBidCloseDateTime(),
+                productRequest.getManufacturer(),
+                productRequest.getModel(),
+                productRequest.getTransmission(),
+                productRequest.getFuelType(),
+                productRequest.getYearAndMonthStart(),
+                productRequest.getYearAndMonthEnd(),
+                productRequest.getDisplacementStart(),
+                productRequest.getDistanceDrivenEnd(),
+                productRequest.getDistanceDrivenStart(),
+                productRequest.getDistanceDrivenEnd());
 
         return productList;
     }

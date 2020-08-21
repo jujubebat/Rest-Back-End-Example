@@ -5,7 +5,11 @@ import shop.gongdal.model.Product;
 import java.util.List;
 
 public interface ProductRepositoryCustom {
+
+    List<Product> findAll(Long pageStartNum);
+
     List<Product> findByCarCondition(
+                                    Long pageStartNum,
                                     String objectManagementNum,
                                     String objectName,
                                     Long appraisedPriceStart,
@@ -22,4 +26,5 @@ public interface ProductRepositoryCustom {
                                     Long displacementEnd,
                                     Long distanceDrivenStart,
                                     Long distanceDrivenEnd);
+
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductRequest {
+    Long pageStartNum;
     String objectManagementNum;
     String objectName;
     Long appraisedPriceStart;

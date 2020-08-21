@@ -13,9 +13,20 @@ import java.util.List;
 public class ProductRepositoryCustomImpl implements ProductRepositoryCustom{
 
     private final JPAQueryFactory queryFactory;
+    private static Long limit =5L;
+
+    @Override
+    public List<Product> findAll(Long pageStartNum){
+        return queryFactory
+                .selectFrom(product)
+                .offset(pageStartNum*limit)
+                .limit(limit)
+                .fetch();
+    }
 
     @Override
     public List<Product> findByCarCondition(
+                                    Long pageStartNum ,
                                     String objectManagementNum,
                                     String objectName,
                                     Long appraisedPriceStart,
@@ -35,9 +46,28 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom{
 
         BooleanBuilder builder = new BooleanBuilder();
 
+
+        System.out.println(objectManagementNum);
+        System.out.println(objectName);
+        System.out.println(appraisedPriceStart);
+        System.out.println(appraisedPriceEnd);
+        System.out.println(bidBeginDateTime);
+        System.out.println(bidCloseDateTime);
+        System.out.println(manufacturer);
+        System.out.println(model);
+        System.out.println(transmission);
+        System.out.println(fuelType);
+        System.out.println(yearAndMonthStart);
+        System.out.println(yearAndMonthEnd);
+        System.out.println(displacementStart);
+        System.out.println(displacementEnd);
+        System.out.println(distanceDrivenStart);
+        System.out.println(distanceDrivenEnd);
+
+
         // 물건 관리번호
         if(!StringUtils.isEmpty(objectManagementNum)){ // 물건 관리번호 필드가 있다면 쿼리 조건에 추가
-            builder.and(product.objectManagementNum.contains(objectManagementNum));
+            builder.and(product.objectManagementNum.eq(objectManagementNum));
         }
 
         // 물건명
@@ -65,11 +95,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom{
 
         // 제조사
         if(!StringUtils.isEmpty(manufacturer)){ // 제조사 필드가 있다면 쿼리 조건에 추가
-            builder.and(product.manufacturer.contains(manufacturer));
-        }
-
-        // 제조사
-        if(!StringUtils.isEmpty(manufacturer)){ // 제조사 필드가 있다면 쿼리 조건에 추가
+            System.out.println("예! " + manufacturer);
             builder.and(product.manufacturer.contains(manufacturer));
         }
 
@@ -121,6 +147,8 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom{
         return queryFactory
                 .selectFrom(product)
                 .where(builder)
+                .offset(pageStartNum*limit)
+                .limit(limit)
                 .fetch();
     }
 
