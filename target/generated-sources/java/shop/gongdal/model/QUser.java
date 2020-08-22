@@ -8,6 +8,9 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
+import shop.gongcar.model.AuthProvider;
+import shop.gongcar.model.Calendar;
+import shop.gongcar.model.User;
 
 
 /**
